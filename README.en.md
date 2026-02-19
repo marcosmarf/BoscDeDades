@@ -1,3 +1,5 @@
+**[English](README.en.md) | [Català](README.md) | [Español](README.es.md)**
+
 # BoscDeDades
 Build, measure, and improve your city: join the citizen network safeguarding our streets' environmental health through open technology.
 
