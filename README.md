@@ -1,4 +1,4 @@
-**[English](README.md) | [Català](README.ca.md) | [Español](README.es.md)**
+**[English](README.en.md) | [Català](README.md) | [Español](README.es.md)**
 
 # BoscDeDades
 Construeix, mesura i millora la teva ciutat: uneix-te a la xarxa ciutadana que vigila la salut ambiental dels nostres carrers amb tecnologia oberta.
