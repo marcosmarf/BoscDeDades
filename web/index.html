@@ -14,37 +14,44 @@
     </div>
 
     <div class="wrapper">
-        
+
         <header>
             <div class="logo">BOSC DE DADES</div>
             <nav>
-                <a href="#manifest">Manifest</a>
-                <a href="#dwn">Materials</a>
-                <a href="#cta">Full de Ruta</a>
-                <a href="#plantar-sensor">Plantar un Sensor</a>
+                <a href="#manifest" id="nav-manifest">Manifest</a>
+                <a href="#dwn" id="nav-materials">Materials</a>
+                <a href="#cta" id="nav-cta">Full de Ruta</a>
+                <a href="#plantar-sensor" id="nav-plantarSensor">Plantar un Sensor</a>
             </nav>
+
+            <!-- Botons de prova per la llengua -->>
+            <div class="lang-selector" style="display: flex; gap: 10px; margin-left: 20px;">
+                <button onclick="changeLanguage('ca')" style="background:none; border:none; color:white; cursor:pointer;">CA</button>
+                <button onclick="changeLanguage('es')" style="background:none; border:none; color:white; cursor:pointer;">ES</button>
+                <button onclick="changeLanguage('en')" style="background:none; border:none; color:white; cursor:pointer;">EN</button>
+            </div>
         </header>
 
         <section class="hero-section">
-            <h1><span class="text-accent">Bosc</span> de Dades</h1>
-            <span class="hero-meta">// CONSTRUEIX, MESURA i MILLORA</span>
+            <h1 id="main-title"><span class="text-accent">Bosc</span> de Dades</h1>
+            <span class="hero-meta" id="main-subtitle">// CONSTRUEIX, MESURA i MILLORA</span>
         </section>
 
-        <section class="info-block" id="manifest">
+        <section class="info-block">
             <div class="info-block-content">
-                <p class="info-block-subtitle">Construeix, mesura i millora la teva ciutat: uneix-te a la xarxa ciutadana que vigila la salut ambiental dels nostres carrers amb tecnologia oberta.</p>
+                <p class="info-block-subtitle" id="manifest-subtitle">Construeix, mesura i millora la teva ciutat: uneix-te a la xarxa ciutadana que vigila la salut ambiental dels nostres carrers amb tecnologia oberta.</p>
                 <div class="info-block-body">
                     <div class="info-block-text">
-                        <p class="info-block-description">Més enllà d'una Smart City, construïm una ciutat de Ciutadans Inteligents. 'Bosc de Dades' és una iniciativa pionera que posa la tecnologia a les teves mans: un projecte de ciència ciutadana on estudiants i veïns construeixen, instal·len i gestionen els seus propis sensors de codi obert. Uneix-te a nosaltres per dibuixar, dada a dada, el mapa real de l'aire que respirem i el soroll que ens envolta, transformant la informació invisible dels nostres carrers en accions per a un futur més saludable.</p>
+                        <p class="info-block-description" id="manifest-infoBlock">Més enllà d'una Smart City, construïm una ciutat de Ciutadans Inteligents. 'Bosc de Dades' és una iniciativa pionera que posa la tecnologia a les teves mans: un projecte de ciència ciutadana on estudiants i veïns construeixen, instal·len i gestionen els seus propis sensors de codi obert. Uneix-te a nosaltres per dibuixar, dada a dada, el mapa real de l'aire que respirem i el soroll que ens envolta, transformant la informació invisible dels nostres carrers en accions per a un futur més saludable.</p>
                     </div>
                     <div class="info-block-image">
                         <img src="plant.png" alt="Planta sensor" />
                     </div>
                 </div>
                 <div class="info-tags-container">
-                    <span class="info-tag" data-tooltip="Projectes de recerca oberts a la participació de la ciutadania per generar coneixement científic.">#CitizenScience</span>
-                    <span class="info-tag" data-tooltip="Codi font disponible públicament per a ser usat, modificat i distribuït lliurement.">#OpenSource</span>
-                    <span class="info-tag" data-tooltip="Internet of Things: xarxa d'objectes físics connectats que recullen i intercanvien dades.">#IoT</span>
+                    <span class="info-tag" id="tooltip-CitizenCience" data-tooltip="Projectes de recerca oberts a la participació de la ciutadania per generar coneixement científic.">#CitizenScience</span>
+                    <span class="info-tag" id="tooltip-OpenSource" data-tooltip="Codi font disponible públicament per a ser usat, modificat i distribuït lliurement.">#OpenSource</span>
+                    <span class="info-tag" id="tooltip-IoT" data-tooltip="Internet of Things: xarxa d'objectes físics connectats que recullen i intercanvien dades.">#IoT</span>
                 </div>
             </div>
         </section>
@@ -70,7 +77,7 @@
                 Documentació Tècnica
             </a>
         </div>
-        
+
 
 
         <div class="cta-section" id="cta">
@@ -105,14 +112,16 @@
             </div>
             <div class="scroll-col">
                 <ul>
-                    <li><span style="color: #f39c12;">⟳</span> Generació de materials didáctics
+                    <li>
+                        <span style="color: #f39c12;">⟳</span> Generació de materials didáctics
                         <ul>
                             <li>Materials Instituts</li>
                             <li>Materials Centres cívics</li>
                             <li>Materials Tallers</li>
                         </ul>
                     </li>
-                    <li><span style="color: #f39c12;">⟳</span> Generació de materials gràfics
+                    <li>
+                        <span style="color: #f39c12;">⟳</span> Generació de materials gràfics
                         <ul>
                             <li>Logos</li>
                             <li>Plantilles documents</li>
@@ -121,7 +130,8 @@
                             <li>Disseny maleta pedagògica</li>
                         </ul>
                     </li>
-                    <li><span style="color: #e74c3c;">○</span> Adaptació hardware
+                    <li>
+                        <span style="color: #e74c3c;">○</span> Adaptació hardware
                         <ul>
                             <li>Localització al Català</li>
                             <li>¿Afegir pantalla Oled?</li>
@@ -133,14 +143,16 @@
                             <li>Revisió comunicació I2C (¿redisseny placa?)</li>
                         </ul>
                     </li>
-                    <li><span style="color: #e74c3c;">○</span> Adaptació software
+                    <li>
+                        <span style="color: #e74c3c;">○</span> Adaptació software
                         <ul>
                             <li>Analisi funcionament de les comunicacions</li>
                             <li>¿Servidor propi amb dades?</li>
                             <li>Adaptacions</li>
                         </ul>
                     </li>
-                    <li><span style="color: #e74c3c;">○</span> Ensamblatge dels equips
+                    <li>
+                        <span style="color: #e74c3c;">○</span> Ensamblatge dels equips
                         <ul>
                             <li>Ensamblatge dels equips</li>
                             <li>Preconfiguració</li>
@@ -171,7 +183,7 @@
             </div>
         </section>
 
-              <section class="grid-row border-bottom">
+        <section class="grid-row border-bottom">
             <div class="sticky-col">
                 <h2>Fase 04: Analisi de dades</h2>
                 <p style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
@@ -206,5 +218,6 @@
     
 
     <script src="script.js"></script>
+    <script src="translations.js"></script>
 </body>
 </html>
