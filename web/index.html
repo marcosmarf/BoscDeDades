@@ -192,10 +192,52 @@
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-[Montserrat] leading-tight" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 2rem; text-align: center;">
                 Vols plantar un <span style="color: #BAE9F4;">sensor?</span>
             </h2>
-            <a href="mailto:boscdedades@tecnocampus.cat" class="dwn-btn" style="display: inline-flex; align-items: center; gap: 0.7em; margin-bottom: 2rem; text-decoration: none; box-shadow: 0 2px 12px rgba(127,229,184,0.08);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bbf6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
-                <span style="text-decoration: none;">Contactar ara</span>
-            </a>
+
+            <form id="contact-form" class="contact-form" novalidate style="max-width: 480px; margin: 0 auto 2rem auto; text-align: left;">
+                <div class="form-row" style="margin-bottom: 0.75rem;">
+                    <label for="contact-name" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Nom i cognoms</label>
+                    <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        required
+                        autocomplete="name"
+                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 999px; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; outline: none;"
+                    >
+                </div>
+
+                <div class="form-row" style="margin-bottom: 0.75rem;">
+                    <label for="contact-email" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Correu electrònic</label>
+                    <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        required
+                        autocomplete="email"
+                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 999px; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; outline: none;"
+                    >
+                </div>
+
+                <div class="form-row" style="margin-bottom: 1rem;">
+                    <label for="contact-message" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Missatge</label>
+                    <textarea
+                        id="contact-message"
+                        name="message"
+                        rows="4"
+                        required
+                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 1rem; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; resize: vertical; outline: none;"
+                        placeholder="Explica'ns on voldries plantar el sensor, qui el faria servir, etc."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="dwn-btn" style="display: inline-flex; align-items: center; gap: 0.7em; margin-bottom: 0.25rem; text-decoration: none; box-shadow: 0 2px 12px rgba(127,229,184,0.08); border: none; cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bbf6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
+                    <span style="text-decoration: none;">Enviar sol·licitud</span>
+                </button>
+
+                <p id="contact-feedback" class="contact-feedback" aria-live="polite" style="min-height: 1.2em; font-size: 0.85rem; margin: 0;"></p>
+            </form>
+
             <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
                 <img src="Bosc.png" alt="Bosc de Dades" style="max-width: 80%; height: auto; width: 100%; object-fit: contain; display: block; margin: 0 auto;">
             </div>

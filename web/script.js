@@ -165,3 +165,63 @@
         animate();
     }
 })();
+
+// Manejo del formulari de contacte
+(function() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+    const feedbackEl = document.getElementById('contact-feedback');
+
+    function setFeedback(message, type) {
+        if (!feedbackEl) return;
+        feedbackEl.textContent = message;
+        feedbackEl.style.color = type === 'error' ? '#e74c3c' : '#2ecc71';
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!name || !email || !message) {
+            setFeedback('Si us plau, omple tots els camps.', 'error');
+            return;
+        }
+
+        // Validació senzilla del correu
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            setFeedback('Introdueix un correu electrònic vàlid.', 'error');
+            return;
+        }
+
+        setFeedback('Enviant el formulari…', 'success');
+
+        try {
+            const response = await fetch('https://formspree.io/f/xnjgjyao', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error en la resposta del servidor');
+            }
+
+            setFeedback('Gràcies! Hem rebut la teva sol·licitud.', 'success');
+            form.reset();
+        } catch (error) {
+            console.error('Error enviant el formulari de contacte:', error);
+            setFeedback('Hi ha hagut un problema en enviar el formulari. Torna-ho a provar més tard.', 'error');
+        }
+    });
+})();
