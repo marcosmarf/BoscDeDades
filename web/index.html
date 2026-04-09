@@ -24,11 +24,17 @@
                 <a href="#plantar-sensor" id="nav-plantarSensor">Plantar un Sensor</a>
             </nav>
 
-            <!-- Botons de prova per la llengua -->>
-            <div class="lang-selector" style="display: flex; gap: 10px; margin-left: 20px;">
-                <button onclick="changeLanguage('ca')" style="background:none; border:none; color:white; cursor:pointer;">CA</button>
-                <button onclick="changeLanguage('es')" style="background:none; border:none; color:white; cursor:pointer;">ES</button>
-                <button onclick="changeLanguage('en')" style="background:none; border:none; color:white; cursor:pointer;">EN</button>
+            <div class="lang-selector">
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button type="button" id="lang-trigger" class="lang-trigger" aria-haspopup="listbox" aria-expanded="false"> 
+                        Idioma  
+                    </button>
+                    <div class="lang-menu" id="lang-menu" role="listbox" aria-label="Idioma">
+                        <button type="button" class="lang-option" role="option" data-lang="ca">Català</button>
+                        <button type="button" class="lang-option" role="option" data-lang="es">Español</button>
+                        <button type="button" class="lang-option" role="option" data-lang="en">English</button>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -37,7 +43,7 @@
             <span class="hero-meta" id="main-subtitle">// CONSTRUEIX, MESURA i MILLORA</span>
         </section>
 
-        <section class="info-block">
+        <section href="#" id="manifest" class="info-block">
             <div class="info-block-content">
                 <p class="info-block-subtitle" id="manifest-subtitle">Construeix, mesura i millora la teva ciutat: uneix-te a la xarxa ciutadana que vigila la salut ambiental dels nostres carrers amb tecnologia oberta.</p>
                 <div class="info-block-body">

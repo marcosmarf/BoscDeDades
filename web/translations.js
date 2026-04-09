@@ -5,6 +5,7 @@
         "nav-materials": "Materials",
         "nav-cta": "Full de ruta",
         "nav-plantarSensor": "Plantar un Sensor",
+        "lang-trigger": "Idioma",
 
         "main-title": "<span class='text-accent'>Bosc</span> de Dades",
         "main-subtitle": "// CONSTRUEIX, MESURA i MILLORA",
@@ -84,6 +85,7 @@
         "nav-materials": "Materiales",
         "nav-cta": "Hoja de ruta",
         "nav-plantarSensor": "Plantar un Sensor",
+        "lang-trigger": "Idioma",
 
         "main-title": "<span class='text-accent'>Bosque</span> de Datos",
         "main-subtitle": "// CONSTRUYE, MIDE y MEJORA",
@@ -163,6 +165,7 @@
         "nav-materials": "Materials",
         "nav-cta": "Roadmap",
         "nav-plantarSensor": "Plant a Sensor",
+        "lang-trigger": "Language",
 
         "main-title": "<span class='text-accent'>Data</span> Forest",
         "main-subtitle": "// BUILD, MEASURE and IMPROVE",
@@ -254,4 +257,94 @@ function changeLanguage(lang) {
             }
         }
     }
+
+    syncLanguageSelector(lang);
+}
+
+function setupLanguageSelector() {
+    const dropdown = document.getElementById('lang-dropdown');
+    const trigger = document.getElementById('lang-trigger');
+    const menu = document.getElementById('lang-menu');
+    if (!dropdown || !trigger || !menu) return;
+
+    if (dropdown.dataset.bound === '1') return;
+    dropdown.dataset.bound = '1';
+
+    const open = () => {
+        dropdown.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+    };
+
+    const close = () => {
+        dropdown.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    const toggle = () => {
+        if (dropdown.classList.contains('is-open')) close();
+        else open();
+    };
+
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggle();
+    });
+
+    menu.addEventListener('click', (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest('.lang-option') : null;
+        if (!btn) return;
+        const newLang = btn.getAttribute('data-lang') || 'ca';
+        changeLanguage(newLang);
+        close();
+        trigger.focus();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!dropdown.classList.contains('is-open')) return;
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            close();
+            trigger.focus();
+        }
+    });
+}
+
+function syncLanguageSelector(lang) {
+    const dropdown = document.getElementById('lang-dropdown');
+    const trigger = document.getElementById('lang-trigger');
+    const menu = document.getElementById('lang-menu');
+    if (!dropdown || !trigger || !menu) return;
+
+    trigger.setAttribute('data-lang', lang);
+
+    const options = menu.querySelectorAll('.lang-option');
+    options.forEach((opt) => {
+        const optLang = opt.getAttribute('data-lang');
+        const selected = optLang === lang;
+        opt.classList.toggle('is-selected', selected);
+        opt.setAttribute('aria-selected', selected ? 'true' : 'false');
+    });
+}
+
+function initLanguage() {
+    let savedLang = null;
+    try {
+        savedLang = localStorage.getItem('bosc_lang');
+    } catch (_) {
+        savedLang = null;
+    }
+
+    const langToApply = savedLang && translations[savedLang] ? savedLang : 'ca';
+    setupLanguageSelector();
+    changeLanguage(langToApply);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguage);
+} else {
+    initLanguage();
 }
