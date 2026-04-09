@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\translations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:translations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\translations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:translations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -30,17 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\index.html",
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAowH8AAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH8AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-04-08T07:20:39.876Z",
               "IsPinned": true,
@@ -68,8 +68,7 @@
               "RelativeToolTip": "styles.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-08T07:22:13.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T07:22:13.153Z"
             },
             {
               "$type": "Document",
@@ -85,7 +84,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "translations.js",
               "DocumentMoniker": "C:\\Users\\adria\\OneDrive\\Escriptori\\Git\\BoscDeDades\\web\\translations.js",
               "RelativeDocumentMoniker": "translations.js",
