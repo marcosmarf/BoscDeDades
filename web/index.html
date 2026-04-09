@@ -16,7 +16,7 @@
     <div class="wrapper">
 
         <header>
-            <div class="logo">BOSC DE DADES</div>
+            <div class="logo" id="nav-logo">BOSC DE DADES</div>
             <nav>
                 <a href="#manifest" id="nav-manifest">Manifest</a>
                 <a href="#dwn" id="nav-materials">Materials</a>
@@ -57,55 +57,55 @@
         </section>
 
         <div class="dwn-section" id="dwn">
-            <a href="#" class="cta-button">Descàrregues</a>
+            <a href="#" class="cta-button" id="dwn-title">Descàrregues</a>
         </div>
         <div class="dwn-btns-container">
-            <a href="#" class="dwn-btn-modern" target="_blank">
+            <a href="#" class="dwn-btn-modern" target="_blank" id="dwn-manual">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
-                Manual d'Usuari
+                <span>Manual d'Usuari</span>
             </a>
-            <a href="#" class="dwn-btn-modern" target="_blank">
+            <a href="#" class="dwn-btn-modern" target="_blank" id="dwn-code">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
-                Codi Font
+                <span>Codi Font</span>
             </a>
-            <a href="#" class="dwn-btn-modern" target="_blank">
+            <a href="#" class="dwn-btn-modern" target="_blank" id="dwn-data">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
-                Dades Obertes
+                <span>Dades Obertes</span>
             </a>
-            <a href="#" class="dwn-btn-modern" target="_blank">
+            <a href="#" class="dwn-btn-modern" target="_blank" id="dwn-docs">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
-                Documentació Tècnica
+                <span>Documentació Tècnica</span>
             </a>
         </div>
 
 
 
         <div class="cta-section" id="cta">
-            <a href="#" class="cta-button">Full de Ruta</a>
+            <a href="#" class="cta-button" id="cta-title">Full de Ruta</a>
         </div>
 
         <section class="grid-row border-bottom">
             <div class="sticky-col">
-                <h2>Fase 01: El Concepte</h2>
-                <p style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
+                <h2 id="phase1-title">Fase 01: El Concepte</h2>
+                <p id="phase1-coords" style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
                     COORDENADES: 41.53 N, 2.44 E<br>
                     ESTAT: ACTIU
                 </p>
             </div>
             <div class="scroll-col">
                 <ul>
-                    <li><span style="color: #2ecc71;">✓</span> Anàlisi i selecció de hardware i software</li>
-                    <li><span style="color: #2ecc71;">✓</span> Proves inicials de càrrega dels sensor</li>
-                    <li><span style="color: #2ecc71;">✓</span> Planificació dels materials didáctics</li>
-                    <li><span style="color: #f39c12;">⟳</span> Comunicació de l'inici del projecte</li>
+                    <li id="phase1-item1"><span style="color: #2ecc71;">✓</span> Anàlisi i selecció de hardware i software</li>
+                    <li id="phase1-item2"><span style="color: #2ecc71;">✓</span> Proves inicials de càrrega dels sensor</li>
+                    <li id="phase1-item3"><span style="color: #2ecc71;">✓</span> Planificació dels materials didáctics</li>
+                    <li id="phase1-item4"><span style="color: #f39c12;">⟳</span> Comunicació de l'inici del projecte</li>
                 </ul>
             </div>
         </section>
 
         <section class="grid-row border-bottom">
             <div class="sticky-col">
-                <h2>Fase 02: Tecnologia</h2>
-                <p style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
+                <h2 id="phase2-title">Fase 02: Tecnologia</h2>
+                <p id="phase2-meta" style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
                     HARDWARE: ESP8266 + SDS011<br>
                     PLATAFORMA: SENSOR.COMMUNITY
                 </p>
@@ -113,100 +113,100 @@
             <div class="scroll-col">
                 <ul>
                     <li>
-                        <span style="color: #f39c12;">⟳</span> Generació de materials didáctics
+                        <span id="phase2-item1"><span style="color: #f39c12;">⟳</span> Generació de materials didáctics</span>
                         <ul>
-                            <li>Materials Instituts</li>
-                            <li>Materials Centres cívics</li>
-                            <li>Materials Tallers</li>
+                            <li id="phase2-item1-a">Materials Instituts</li>
+                            <li id="phase2-item1-b">Materials Centres cívics</li>
+                            <li id="phase2-item1-c">Materials Tallers</li>
                         </ul>
                     </li>
                     <li>
-                        <span style="color: #f39c12;">⟳</span> Generació de materials gràfics
+                        <span id="phase2-item2"><span style="color: #f39c12;">⟳</span> Generació de materials gràfics</span>
                         <ul>
-                            <li>Logos</li>
-                            <li>Plantilles documents</li>
-                            <li>Maquetació web</li>
-                            <li>¿Eines de visualització de dades?</li>
-                            <li>Disseny maleta pedagògica</li>
+                            <li id="phase2-item2-a">Logos</li>
+                            <li id="phase2-item2-b">Plantilles documents</li>
+                            <li id="phase2-item2-c">Maquetació web</li>
+                            <li id="phase2-item2-d">¿Eines de visualització de dades?</li>
+                            <li id="phase2-item2-e">Disseny maleta pedagògica</li>
                         </ul>
                     </li>
                     <li>
-                        <span style="color: #e74c3c;">○</span> Adaptació hardware
+                        <span id="phase2-item3"><span style="color: #e74c3c;">○</span> Adaptació hardware</span>
                         <ul>
-                            <li>Localització al Català</li>
-                            <li>¿Afegir pantalla Oled?</li>
-                            <li>Proves de càrrega</li>
-                            <li>Disseny construcció encapsulació</li>
-                            <li>Revisió circuiteria</li>
-                            <li>Errors alimentació SDS011</li>
-                            <li>Encapsulació del micro</li>
-                            <li>Revisió comunicació I2C (¿redisseny placa?)</li>
+                            <li id="phase2-item3-a">Localització al Català</li>
+                            <li id="phase2-item3-b">¿Afegir pantalla Oled?</li>
+                            <li id="phase2-item3-c">Proves de càrrega</li>
+                            <li id="phase2-item3-d">Disseny construcció encapsulació</li>
+                            <li id="phase2-item3-e">Revisió circuiteria</li>
+                            <li id="phase2-item3-f">Errors alimentació SDS011</li>
+                            <li id="phase2-item3-g">Encapsulació del micro</li>
+                            <li id="phase2-item3-h">Revisió comunicació I2C (¿redisseny placa?)</li>
                         </ul>
                     </li>
                     <li>
-                        <span style="color: #e74c3c;">○</span> Adaptació software
+                        <span id="phase2-item4"><span style="color: #e74c3c;">○</span> Adaptació software</span>
                         <ul>
-                            <li>Analisi funcionament de les comunicacions</li>
-                            <li>¿Servidor propi amb dades?</li>
-                            <li>Adaptacions</li>
+                            <li id="phase2-item4-a">Analisi funcionament de les comunicacions</li>
+                            <li id="phase2-item4-b">¿Servidor propi amb dades?</li>
+                            <li id="phase2-item4-c">Adaptacions</li>
                         </ul>
                     </li>
                     <li>
-                        <span style="color: #e74c3c;">○</span> Ensamblatge dels equips
+                        <span id="phase2-item5"><span style="color: #e74c3c;">○</span> Ensamblatge dels equips</span>
                         <ul>
-                            <li>Ensamblatge dels equips</li>
-                            <li>Preconfiguració</li>
-                            <li>Testeig</li>
-                            <li>Encapsular</li>
+                            <li id="phase2-item5-a">Ensamblatge dels equips</li>
+                            <li id="phase2-item5-b">Preconfiguració</li>
+                            <li id="phase2-item5-c">Testeig</li>
+                            <li id="phase2-item5-d">Encapsular</li>
                         </ul>
                     </li>
-                    <li><span style="color: #e74c3c;">○</span> Maquetació física de la maleta pedagògica</li>
-                    <li><span style="color: #e74c3c;">○</span> Organització logística dels tallers</li>
+                    <li id="phase2-item6"><span style="color: #e74c3c;">○</span> Maquetació física de la maleta pedagògica</li>
+                    <li id="phase2-item7"><span style="color: #e74c3c;">○</span> Organització logística dels tallers</li>
                 </ul>
             </div>
         </section>
 
         <section class="grid-row border-bottom">
             <div class="sticky-col">
-                <h2>Fase 03: Tallers i posada en marxa</h2>
-                <p style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
+                <h2 id="phase3-title">Fase 03: Tallers i posada en marxa</h2>
+                <p id="phase3-meta" style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
                     LOCATION: Your home<br>
                     START: Hello World!
                 </p>
             </div>
             <div class="scroll-col">
                 <ul>
-                    <li><span style="color: #e74c3c;">○</span> Realització de tallers presencials</li>
-                    <li><span style="color: #e74c3c;">○</span> Seguiment i generació de dades</li>
-                    <li><span style="color: #e74c3c;">○</span> Documentació i manteniment</li>
+                    <li id="phase3-item1"><span style="color: #e74c3c;">○</span> Realització de tallers presencials</li>
+                    <li id="phase3-item2"><span style="color: #e74c3c;">○</span> Seguiment i generació de dades</li>
+                    <li id="phase3-item3"><span style="color: #e74c3c;">○</span> Documentació i manteniment</li>
                 </ul>
             </div>
         </section>
 
         <section class="grid-row border-bottom">
             <div class="sticky-col">
-                <h2>Fase 04: Analisi de dades</h2>
-                <p style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
+                <h2 id="phase4-title">Fase 04: Analisi de dades</h2>
+                <p id="phase4-meta" style="font-family: var(--font-mono); font-size: 0.9rem; opacity: 0.7;">
                     DATA: Loaded<br>
                     ANALISYS: Start!
                 </p>
             </div>
             <div class="scroll-col">
                 <ul>
-                    <li><span style="color: #e74c3c;">○</span> Recoleció de dades</li>
-                    <li><span style="color: #e74c3c;">○</span> Anàlisi de correlacions</li>
-                    <li><span style="color: #e74c3c;">○</span> Redacció d'informes</li>
+                    <li id="phase4-item1"><span style="color: #e74c3c;">○</span> Recoleció de dades</li>
+                    <li id="phase4-item2"><span style="color: #e74c3c;">○</span> Anàlisi de correlacions</li>
+                    <li id="phase4-item3"><span style="color: #e74c3c;">○</span> Redacció d'informes</li>
                 </ul>
             </div>
         </section>
 
         <footer class="footer-big" id="plantar-sensor" style="text-align: center;">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-[Montserrat] leading-tight" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 2rem; text-align: center;">
-                Vols plantar un <span style="color: #BAE9F4;">sensor?</span>
+                <span id="footer-title">Vols plantar un <span style="color: #BAE9F4;">sensor?</span></span>
             </h2>
             <a href="mailto:boscdedades@tecnocampus.cat" class="dwn-btn" style="display: inline-flex; align-items: center; gap: 0.7em; margin-bottom: 2rem; text-decoration: none; box-shadow: 0 2px 12px rgba(127,229,184,0.08);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bbf6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
-                <span style="text-decoration: none;">Contactar ara</span>
+                <span id="footer-contact" style="text-decoration: none;">Contactar ara</span>
             </a>
             <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
                 <img src="Bosc.png" alt="Bosc de Dades" style="max-width: 80%; height: auto; width: 100%; object-fit: contain; display: block; margin: 0 auto;">
