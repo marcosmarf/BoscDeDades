@@ -34,7 +34,6 @@ const char WWW_PASSWORD[] PROGMEM = "";
 #define SEND2LORA 0
 #define SEND2CSV 0
 #define SEND2CUSTOM 0
-#define SEND2MQTT 0
 
 // OpenSenseMap
 #define SENSEBOXID ""
@@ -122,6 +121,36 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 
 //  === pin assignments for NodeMCU V2 board ===================================
 #if defined(ESP8266)
+// Some ESP8266 board profiles (e.g. generic) do not provide Dx aliases.
+// Provide fallback mappings to GPIO numbers to keep this config portable.
+#ifndef D0
+#define D0 16
+#endif
+#ifndef D1
+#define D1 5
+#endif
+#ifndef D2
+#define D2 4
+#endif
+#ifndef D3
+#define D3 0
+#endif
+#ifndef D4
+#define D4 2
+#endif
+#ifndef D5
+#define D5 14
+#endif
+#ifndef D6
+#define D6 12
+#endif
+#ifndef D7
+#define D7 13
+#endif
+#ifndef D8
+#define D8 15
+#endif
+
 // define pin for one wire sensors
 #define ONEWIRE_PIN D7
 
@@ -323,8 +352,8 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define DNMS_READ_SPECTRUM_Z 0
 #define DNMS_2nd_INTERVAL 0
 #define DNMS_2nd_INTERVAL_Z 0
-#define DNMS_2nd_READ_SPECTRUM 0;
-#define DNMS_2nd_READ_SPECTRUM_Z 0;
+#define DNMS_2nd_READ_SPECTRUM 0
+#define DNMS_2nd_READ_SPECTRUM_Z 0
 #define DNMS_2nd_INTERVAL_TIME "5"
 #define DNMS_API_PIN 15
 #define DNMS_CORRECTION "0.0"
