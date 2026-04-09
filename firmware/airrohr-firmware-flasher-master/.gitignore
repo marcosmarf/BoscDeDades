@@ -1,0 +1,15 @@
+.ropeproject
+*.py[oc]
+*.swp
+.idea/**
+_buildid.py
+.python-version
+build/
+dist/
+
+# Ignore compiled Qt assets
+*.qm
+gui/*.py
+!gui/__init__.py
+
+.DS_Store
