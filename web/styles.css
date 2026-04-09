@@ -122,6 +122,11 @@
     --font-mono: 'Courier New', Courier, monospace;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.25rem; /* header (4rem) + aire */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -182,6 +187,14 @@ header {
     border-bottom: 1px solid var(--line-color);
     backdrop-filter: blur(10px);
     height: 4rem;
+}
+
+/* Ajuste extra para anclas principales con header sticky */
+#manifest,
+#dwn,
+#cta,
+#plantar-sensor {
+    scroll-margin-top: 5.25rem;
 }
 
 .sr-only {
