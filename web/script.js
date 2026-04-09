@@ -160,7 +160,8 @@
             init();
             animate();
         });
-    } else {
+    }
+    else {
         init();
         animate();
     }

@@ -1649,6 +1649,7 @@ static String form_select_lang() {
                "<select id='current_lang' name='current_lang'>"
                "<option value='BG'>Bulgarian (BG)</option>"
                "<option value='CN'>中文 (CN)</option>"
+               "<option value='CA'>Català (CA)</option>"
                "<option value='CZ'>Český (CZ)</option>"
                "<option value='DE'>Deutsch (DE)</option>"
                "<option value='DK'>Dansk (DK)</option>"
