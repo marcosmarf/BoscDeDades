@@ -97,10 +97,20 @@ String SOFTWARE_VERSION(SOFTWARE_VERSION_STR);
 #include <ESPmDNS.h>
 #endif
 
+// Include compile-time configuration before optional display libraries
+#include "defines.h"
+#include "ext_def.h"
+
 // includes common to ESP8266 and ESP32 (especially external libraries)
+#if HAS_DISPLAY || HAS_SH1106
 #include "./oledfont.h"  // avoids including the default Arial font, needs to be included before SSD1306.h
+#endif
+#if HAS_DISPLAY
 #include <SSD1306.h>
+#endif
+#if HAS_SH1106
 #include <SH1106.h>
+#endif
 #include <LiquidCrystal_I2C.h>
 #define ARDUINOJSON_ENABLE_ARDUINO_STREAM 0
 #define ARDUINOJSON_ENABLE_ARDUINO_PRINT 0
@@ -124,8 +134,6 @@ String SOFTWARE_VERSION(SOFTWARE_VERSION_STR);
 #include "./intl.h"
 
 #include "./utils.h"
-#include "defines.h"
-#include "ext_def.h"
 #include "html-content.h"
 
 /*****************************************************************
@@ -383,8 +391,12 @@ float temp_corr_value;
 /*****************************************************************
  * Display definitions                                           *
  *****************************************************************/
+#if HAS_DISPLAY
 SSD1306 *oled_ssd1306 = nullptr;
+#endif
+#if HAS_SH1106
 SH1106 *oled_sh1106 = nullptr;
+#endif
 LiquidCrystal_I2C *lcd_1602 = nullptr;
 LiquidCrystal_I2C *lcd_2004 = nullptr;
 const uint8_t lcd_1602_default_i2c_address = 0x3f;
@@ -825,22 +837,22 @@ const char JSON_SENSOR_DATA_VALUES[] PROGMEM = "sensordatavalues";
  *****************************************************************/
 static void display_debug(const String &text1, const String &text2) {
   debug_outln_info(F("output debug text to displays..."));
+#if HAS_DISPLAY
   if (oled_ssd1306) {
     oled_ssd1306->clear();
-    oled_ssd1306->displayOn();
-    oled_ssd1306->setTextAlignment(TEXT_ALIGN_LEFT);
     oled_ssd1306->drawString(0, 12, text1);
     oled_ssd1306->drawString(0, 24, text2);
     oled_ssd1306->display();
   }
+#endif
+#if HAS_SH1106
   if (oled_sh1106) {
     oled_sh1106->clear();
-    oled_sh1106->displayOn();
-    oled_sh1106->setTextAlignment(TEXT_ALIGN_LEFT);
     oled_sh1106->drawString(0, 12, text1);
     oled_sh1106->drawString(0, 24, text2);
     oled_sh1106->display();
   }
+#endif
   if (lcd_1602) {
     lcd_1602->clear();
     lcd_1602->setCursor(0, 0);
@@ -3914,7 +3926,7 @@ static void fetchSensorSDS(String &s) {
 /*****************************************************************
  * read Plantronic PM sensor sensor values                       *
  *****************************************************************/
-static __noinline void fetchSensorPMS(String &s) {
+__noinline void fetchSensorPMS(String &s) {
   char buffer;
   int value;
   int len = 0;
@@ -4070,7 +4082,7 @@ static __noinline void fetchSensorPMS(String &s) {
 /*****************************************************************
  * read Honeywell PM sensor sensor values                        *
  *****************************************************************/
-static __noinline void fetchSensorHPM(String &s) {
+__noinline void fetchSensorHPM(String &s) {
   char buffer;
   int value;
   int len = 0;
@@ -4740,7 +4752,7 @@ static void fetchSensorSEN5X(String &s) {
 /*****************************************************************
  * read PPD42NS sensor values                                    *
  *****************************************************************/
-static __noinline void fetchSensorPPD(String &s) {
+__noinline void fetchSensorPPD(String &s) {
   debug_outln_verbose(FPSTR(DBG_TXT_START_READING), FPSTR(SENSORS_PPD42NS));
 
   if (msSince(starttime) <= SAMPLETIME_MS) {
@@ -5149,7 +5161,7 @@ static void fetchSensorDNMS_FFT_Z_2nd(String &s) {
 /*****************************************************************
  * read GPS sensor values                                        *
  *****************************************************************/
-static __noinline void fetchSensorGPS(String &s) {
+__noinline void fetchSensorGPS(String &s) {
   debug_outln_verbose(FPSTR(DBG_TXT_START_READING), "GPS");
 
   if (gps.location.isUpdated()) {
@@ -5761,6 +5773,7 @@ static void display_values() {
         break;
     }
 
+    #if HAS_DISPLAY
     if (oled_ssd1306) {
       oled_ssd1306->clear();
       oled_ssd1306->displayOn();
@@ -5774,6 +5787,8 @@ static void display_values() {
       oled_ssd1306->drawString(64, 52, displayGenerateFooter(screen_count));
       oled_ssd1306->display();
     }
+    #endif
+    #if HAS_SH1106
     if (oled_sh1106) {
       oled_sh1106->clear();
       oled_sh1106->displayOn();
@@ -5787,6 +5802,7 @@ static void display_values() {
       oled_sh1106->drawString(64, 52, displayGenerateFooter(screen_count));
       oled_sh1106->display();
     }
+    #endif
     if (lcd_2004) {
       display_header = std::move(String((next_display_count % screen_count) + 1) + '/' + String(screen_count) + ' ' + display_header);
       display_lines[0].replace(" µg/m³", emptyString);
@@ -5903,6 +5919,7 @@ static void display_values() {
  * Init LCD/OLED display                                         *
  *****************************************************************/
 static void init_display() {
+#if HAS_DISPLAY
   if (cfg::has_display) {
     oled_ssd1306 = new SSD1306(0x3c, I2C_PIN_SDA, I2C_PIN_SCL);
     oled_ssd1306->init();
@@ -5910,6 +5927,8 @@ static void init_display() {
       oled_ssd1306->flipScreenVertically();
     }
   }
+#endif
+#if HAS_SH1106
   if (cfg::has_sh1106) {
     oled_sh1106 = new SH1106(0x3c, I2C_PIN_SDA, I2C_PIN_SCL);
     oled_sh1106->init();
@@ -5917,6 +5936,7 @@ static void init_display() {
       oled_sh1106->flipScreenVertically();
     }
   }
+#endif
   if (cfg::has_lcd1602) {
     lcd_1602 = new LiquidCrystal_I2C(
       lcd_1602_default_i2c_address,
