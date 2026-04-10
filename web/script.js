@@ -1,5 +1,59 @@
 // STARFIELD PARALLAX CON MOUSE - ESTILO "THE LAST ECONOMY"
 (function() {
+    function initActiveNav() {
+        const navLinks = Array.from(document.querySelectorAll('header nav a[href^="#"]'));
+        if (!navLinks.length) return;
+
+        const sectionByLink = navLinks
+            .map((link) => {
+                const sectionId = link.getAttribute('href');
+                if (!sectionId) return null;
+                const section = document.querySelector(sectionId);
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        if (!sectionByLink.length) return;
+
+        let activeLink = null;
+
+        function setActiveLink(nextLink) {
+            if (activeLink === nextLink) return;
+            if (activeLink) activeLink.classList.remove('nav-link-active');
+            activeLink = nextLink || null;
+            if (activeLink) activeLink.classList.add('nav-link-active');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            const visibleEntries = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+            if (!visibleEntries.length) {
+                return;
+            }
+
+            const mostVisible = visibleEntries[0].target;
+            const pair = sectionByLink.find((item) => item.section === mostVisible);
+            setActiveLink(pair ? pair.link : null);
+        }, {
+            root: null,
+            rootMargin: "-20% 0px -55% 0px",
+            threshold: [0.15, 0.35, 0.6]
+        });
+
+        sectionByLink.forEach(({ section }) => observer.observe(section));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initActiveNav, { once: true });
+        return;
+    }
+
+    initActiveNav();
+})();
+
+(function() {
     const canvas = document.getElementById('bgCanvas');
     if (!canvas) {
         console.error('Canvas no encontrado');

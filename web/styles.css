@@ -335,10 +335,36 @@ nav a {
     letter-spacing: 0.01em;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    overflow: hidden;
+    z-index: 0;
 }
 
 nav a:hover {
     opacity: 0.7;
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(127, 229, 184, 0.24) 0%, rgba(127, 229, 184, 0.08) 100%);
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    z-index: -1;
+}
+
+nav a.nav-link-active {
+    opacity: 1;
+    color: #ffffff;
+}
+
+nav a.nav-link-active::before {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* --- 5. COMPONENTE MARQUEE (TEXTO QUE CORRE) --- */
