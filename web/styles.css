@@ -392,6 +392,8 @@ h1 .text-accent {
 /* --- 7. LAYOUT DE COLUMNAS (GRID) --- */
 .grid-row {
     display: grid;
+    border-color: #88888850;
+    border-radius: 2rem;
     grid-template-columns: 1fr 1fr; /* 50% - 50% */
 }
 
@@ -519,8 +521,8 @@ ul ul li {
 
 .info-block-body {
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 4fr 1.1fr;
+    gap: 0rem;
     align-items: center;
 }
 
@@ -532,16 +534,19 @@ ul ul li {
     flex-shrink: 0;
 }
 
-.info-block-image img {
-    width: 100%;
-    max-width: 450px;
-    min-width: 320px;
-    height: auto;
-    border-radius: 1rem;
-    display: block;
-    margin: 0 auto;
+.info-block-video {
+    height: 100%;
+    width: 110%;
+    max-width: 110%;
+    justify-self: end;
+    align-self: stretch;
+    flex-shrink: 0;
+    border: 3px solid rgba(127, 229, 184, 0.35);
+    border-radius: 1.2rem;
+    padding: 0rem;
+    background: rgba(7, 16, 23, 0.75);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
-
 .info-block-subtitle {
     font-size: 1.25rem;
     color: var(--btn-color);
@@ -623,7 +628,7 @@ ul ul li {
 .video-embed {
     position: relative;
     aspect-ratio: 16 / 9;
-    border-radius: 1rem;
+    border-radius: 1.1rem;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.04);
 }
@@ -719,8 +724,13 @@ ul ul li {
 
 /* --- 11. FOOTER BIG --- */
 .footer-big {
-    padding: 6rem 2rem;
+    padding: 0rem 1rem;
     text-align: left;
+}
+
+.institutional-footer {
+    padding: 0.75rem 1rem 2rem;
+    /*background: linear-gradient(to top, rgba(127, 229, 184, 0.3), #000000 120%);*/
 }
 
 .footer-title {
@@ -746,15 +756,16 @@ ul ul li {
 .institutional-logo-cell img {
     width: auto;
     height: auto;
+    max-height: 80px;
     max-width: 100%;
     object-fit: contain;
     filter: brightness(0.98);
 }
 
-.institutional-logo-cell-top { min-height: 140px; }
+.institutional-logo-cell-top { height: 140;}
 .institutional-logo-cell-bottom { grid-column: 1 / -1; min-height: 120px; }
-.institutional-logo-cell-top img { max-height: 50%;}
-.institutional-logo-cell-bottom img {max-height: 50%;}
+.institutional-logo-cell-top img { height: 120px;}
+.institutional-logo-cell-bottom img {height: 120px;}
 
 
 
@@ -815,6 +826,11 @@ ul ul li {
     .info-block-body {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .info-block-video {
+        width: 100%;
+        max-width: 100%;
     }
     
     .info-block-image {
