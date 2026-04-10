@@ -1,13 +1,11 @@
 ﻿const translations = {
     "ca": {
-        "nav-logo": "BOSC DE DADES",
         "nav-manifest": "Manifest",
         "nav-materials": "Materials",
         "nav-cta": "Full de ruta",
         "nav-plantarSensor": "Plantar un Sensor",
         "lang-trigger": "Idioma",
 
-        "main-title": "<span class='text-accent'>Bosc</span> de Dades",
         "main-subtitle": "// CONSTRUEIX, MESURA i MILLORA",
 
         "manifest-subtitle": "Construeix, mesura i millora la teva ciutat: uneix-te a la xarxa ciutadana que vigila la salut ambiental dels nostres carrers amb tecnologia oberta.",
@@ -90,14 +88,11 @@
         "msg-contact-error": "Hi ha hagut un problema en enviar el formulari. Torna-ho a provar més tard."
     },
     "es": {
-        "nav-logo": "BOSQUE DE DATOS",
         "nav-manifest": "Manifiesto",
         "nav-materials": "Materiales",
         "nav-cta": "Hoja de ruta",
         "nav-plantarSensor": "Plantar un Sensor",
         "lang-trigger": "Idioma",
-
-        "main-title": "<span class='text-accent'>Bosque</span> de Datos",
         "main-subtitle": "// CONSTRUYE, MIDE y MEJORA",
 
         "manifest-subtitle": "Construye, mide y mejora tu ciudad: únete a la red ciudadana que vigila la salud ambiental de nuestras calles con tecnología abierta.",
@@ -179,14 +174,11 @@
         "msg-contact-error": "Ha habido un problema al enviar el formulario. Inténtalo de nuevo más tarde."
     },
     "en": {
-        "nav-logo": "DATA FOREST",
         "nav-manifest": "Manifesto",
         "nav-materials": "Materials",
         "nav-cta": "Roadmap",
         "nav-plantarSensor": "Plant a Sensor",
         "lang-trigger": "Language",
-
-        "main-title": "<span class='text-accent'>Data</span> Forest",
         "main-subtitle": "// BUILD, MEASURE and IMPROVE",
 
         "manifest-subtitle": "Build, measure and improve your city: join the citizen network that monitors the environmental health of our streets with open technology.",
