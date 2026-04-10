@@ -139,7 +139,6 @@
 
         requestAnimationFrame(animate);
     }
-
     // Event listeners para el movimiento del ratón
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;

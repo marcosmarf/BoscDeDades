@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
 
     <div id="canvas-container">
         <canvas id="bgCanvas"></canvas>
     </div>
 
     <div class="wrapper">
-
         <header>
             <div class="logo" id="nav-logo">BOSC DE DADES</div>
             <nav>
                 <a href="#manifest" id="nav-manifest">Manifest</a>
                 <a href="#dwn" id="nav-materials">Materials</a>
+                <a href="#install" id="nav-install">Instal·lació</a>
                 <a href="#cta" id="nav-cta">Full de Ruta</a>
                 <a href="#plantar-sensor" id="nav-plantarSensor">Plantar un Sensor</a>
             </nav>
@@ -84,7 +86,63 @@
             </a>
         </div>
 
+        <section id="install" class="info-block">
+            <a href="#" class="cta-button" id="install-title">Instal·lació</a>
+            <div class="info-block-content">
+                <p class="info-block-subtitle" id="install-subtitle">Guia ràpida per muntar el sensor, configurar el Wi‑Fi i començar a enviar dades.</p>
+                <div class="install-body">
+                    <div class="install-steps">
+                        <h2 id="install-steps-title">Passos bàsics</h2>
+                        <ul class="install-steps-list">
+                            <li id="install-step1">1. Muntatge del kit i comprovació d'alimentació</li>
+                            <li id="install-step2">2. Carregar el firmware i configurar la xarxa Wi‑Fi</li>
+                            <li id="install-step3">3. Registrar el sensor i verificar que publica dades</li>
+                            <li id="install-step4">4. Descarregar dades del servidor</li>
+                        </ul>
+                        <p class="install-note" id="install-note">Si ets un centre educatiu o un grup, podem ajudar-vos a preparar una sessió d'instal·lació pas a pas.</p>
+                    </div>
 
+                    <div class="video-grid" aria-label="Tutorials de YouTube">
+                        <div class="video-card">
+                            <div class="video-embed">
+                                <a class="video-link" href="https://www.youtube.com/watch?v=VX4CaFppjpM" target="_blank" rel="noopener noreferrer" aria-label="Obrir Tutorial 1 a YouTube">
+                                    <img class="video-thumb" src="https://img.youtube.com/vi/VX4CaFppjpM/hqdefault.jpg" alt="Miniatura del Tutorial 1">
+                                    <span class="video-play" aria-hidden="true">▶</span>
+                                </a>
+                            </div>
+                            <div class="video-caption" id="install-video1-caption">Tutorial 1: Muntatge</div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-embed">
+                                <a class="video-link" href="https://www.youtube.com/watch?v=gFwlLioGKwc" target="_blank" rel="noopener noreferrer" aria-label="Obrir Tutorial 2 a YouTube">
+                                    <img class="video-thumb" src="https://img.youtube.com/vi/gFwlLioGKwc/hqdefault.jpg" alt="Miniatura del Tutorial 2">
+                                    <span class="video-play" aria-hidden="true">▶</span>
+                                </a>
+                            </div>
+                            <div class="video-caption" id="install-video2-caption">Tutorial 2: Firmware + Wi‑Fi</div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-embed">
+                                <a class="video-link" href="https://www.youtube.com/watch?v=i9k-RQEJ_aE" target="_blank" rel="noopener noreferrer" aria-label="Obrir Tutorial 3 a YouTube">
+                                    <img class="video-thumb" src="https://img.youtube.com/vi/i9k-RQEJ_aE/hqdefault.jpg" alt="Miniatura del Tutorial 3">
+                                    <span class="video-play" aria-hidden="true">▶</span>
+                                </a>
+                            </div>
+                            <div class="video-caption" id="install-video3-caption">Tutorial 3: Verificació de dades</div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-embed">
+                                <a class="video-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" aria-label="Obrir Tutorial 4 a YouTube">
+                                    <img class="video-thumb" src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Miniatura del Tutorial 4">
+                                    <span class="video-play" aria-hidden="true">▶</span>
+                                </a>
+                            </div>
+                            <div class="video-caption" id="install-video4-caption">Tutorial 4: Descarregar dades</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div class="cta-section" id="cta">
             <a href="#" class="cta-button" id="cta-title">Full de Ruta</a>
@@ -206,8 +264,8 @@
             </div>
         </section>
 
-        <footer class="footer-big" id="plantar-sensor" style="text-align: center;">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-[Montserrat] leading-tight" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 2rem; text-align: center;">
+        <footer class="footer-big" style="text-align: center;">
+            <h2 id="plantar-sensor" class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-[Montserrat] leading-tight" style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 2rem; text-align: center;">
                 <span id="footer-title">Vols plantar un <span style="color: #BAE9F4;">sensor?</span></span>
             </h2>
 
@@ -278,12 +336,6 @@
                 </div>
             </div>
         </footer>
-
     </div>
-
-    
-
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
