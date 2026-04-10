@@ -77,7 +77,17 @@
         "phase4-item3": "<span style='color: #e74c3c;'>○</span> Redacció d'informes",
 
         "footer-title": "Vols plantar un <span style='color: #BAE9F4;'>sensor?</span>",
-        "footer-contact": "Contactar ara"
+        "contact-name-label": "Nom i cognoms",
+        "contact-email-label": "Correu electrònic",
+        "contact-message-label": "Missatge",
+        "contact-message-placeholder": "Explica'ns on voldries plantar el sensor, qui el faria servir, etc.",
+        "contact-submit-label": "Enviar sol·licitud",
+
+        "msg-contact-sending": "Enviant el formulari…",
+        "msg-contact-feedback": "Gràcies! Hem rebut la teva sol·licitud.",
+        "msg-contact-error-required": "Si us plau, omple tots els camps.",
+        "msg-contact-error-email": "Introdueix un correu electrònic vàlid.",
+        "msg-contact-error": "Hi ha hagut un problema en enviar el formulari. Torna-ho a provar més tard."
     },
     "es": {
         "nav-logo": "BOSQUE DE DATOS",
@@ -157,7 +167,16 @@
         "phase4-item3": "<span style='color: #e74c3c;'>○</span> Redacción de informes",
 
         "footer-title": "¿Quieres plantar un <span style='color: #BAE9F4;'>sensor?</span>",
-        "footer-contact": "Contactar ahora"
+        "contact-name-label": "Nombre y apellidos",
+        "contact-email-label": "Correo electrónico",
+        "contact-message-label": "Mensaje",
+        "contact-message-placeholder": "Cuéntanos dónde te gustaría plantar el sensor, quién lo usaría, etc.",
+        "contact-submit-label": "Enviar solicitud",
+        "msg-contact-sending": "Enviando el formulario…",
+        "msg-contact-feedback": "¡Gracias! Hemos recibido tu solicitud.",
+        "msg-contact-error-required": "Por favor, rellena todos los campos.",
+        "msg-contact-error-email": "Introduce un correo electrónico válido.",
+        "msg-contact-error": "Ha habido un problema al enviar el formulario. Inténtalo de nuevo más tarde."
     },
     "en": {
         "nav-logo": "DATA FOREST",
@@ -237,9 +256,24 @@
         "phase4-item3": "<span style='color: #e74c3c;'>○</span> Report writing",
 
         "footer-title": "Do you want to plant a <span style='color: #BAE9F4;'>sensor?</span>",
-        "footer-contact": "Contact now"
+        "contact-name-label": "Name and surname",
+        "contact-email-label": "Email",
+        "contact-message-label": "Message",
+        "contact-message-placeholder": "Tell us where you would like to plant the sensor, who would use it, etc.",
+        "contact-submit-label": "Send request",
+        "msg-contact-sending": "Sending…",
+        "msg-contact-feedback": "Thank you! We have received your request.",
+        "msg-contact-error-required": "Please fill in all fields.",
+        "msg-contact-error-email": "Please enter a valid email address.",
+        "msg-contact-error": "There has been a problem sending the form. Please try again later."
     }
 };
+
+function t(key, fallback = '') {
+    const lang = document.documentElement.lang || 'ca';
+    const dict = translations[lang] || translations.ca || {};
+    return dict[key] ?? fallback;
+}
 
 function changeLanguage(lang) {
     localStorage.setItem('bosc_lang', lang);
@@ -247,6 +281,12 @@ function changeLanguage(lang) {
 
     const currentDict = translations[lang];
     for (const key in currentDict) {
+        if (key.endsWith('-placeholder')) {
+            const el = document.getElementById(key.replace(/-placeholder$/, ''));
+            if (el) el.setAttribute('placeholder', currentDict[key]);
+            continue;
+        }
+
         const element = document.getElementById(key);
 
         if (element) {
@@ -259,6 +299,14 @@ function changeLanguage(lang) {
     }
 
     syncLanguageSelector(lang);
+    clearContactFeedback();
+}
+
+function clearContactFeedback() {
+    const feedbackEl = document.getElementById('contact-feedback');
+    if (!feedbackEl) return;
+    feedbackEl.textContent = '';
+    feedbackEl.style.color = '';
 }
 
 function setupLanguageSelector() {
@@ -348,3 +396,5 @@ if (document.readyState === 'loading') {
 } else {
     initLanguage();
 }
+
+window.t = t;

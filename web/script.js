@@ -183,6 +183,11 @@
         feedbackEl.style.color = type === 'error' ? '#e74c3c' : '#2ecc71';
     }
 
+    function tr(key, fallback) {
+        if (typeof window.t === 'function') return window.t(key, fallback);
+        return fallback;
+    }
+
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -191,18 +196,18 @@
         const message = messageInput ? messageInput.value.trim() : '';
 
         if (!name || !email || !message) {
-            setFeedback('Si us plau, omple tots els camps.', 'error');
+            setFeedback(tr('msg-contact-error-required', 'Please fill in all fields.'), 'error');
             return;
         }
 
         // Validació senzilla del correu
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
-            setFeedback('Introdueix un correu electrònic vàlid.', 'error');
+            setFeedback(tr('msg-contact-error-email', 'Please enter a valid email address.'), 'error');
             return;
         }
 
-        setFeedback('Enviant el formulari…', 'success');
+        setFeedback(tr('msg-contact-sending', 'Sending…'), 'success');
 
         try {
             const response = await fetch('https://formspree.io/f/xnjgjyao', {
@@ -218,11 +223,11 @@
                 throw new Error('Error en la resposta del servidor');
             }
 
-            setFeedback('Gràcies! Hem rebut la teva sol·licitud.', 'success');
+            setFeedback(tr('msg-contact-feedback', 'Thank you! We have received your request.'), 'success');
             form.reset();
         } catch (error) {
             console.error('Error enviant el formulari de contacte:', error);
-            setFeedback('Hi ha hagut un problema en enviar el formulari. Torna-ho a provar més tard.', 'error');
+            setFeedback(tr('msg-contact-error', 'There has been a problem sending the form. Please try again later.'), 'error');
         }
     });
 })();
