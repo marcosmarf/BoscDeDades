@@ -362,6 +362,17 @@ function setupLanguageSelector() {
         trigger.setAttribute('aria-expanded', 'false');
     };
 
+    const focusTriggerWithoutScroll = () => {
+        // Keep keyboard focus for accessibility without nudging viewport position.
+        if (typeof trigger.focus === 'function') {
+            try {
+                trigger.focus({ preventScroll: true });
+            } catch (_) {
+                trigger.focus();
+            }
+        }
+    };
+
     const toggle = () => {
         if (dropdown.classList.contains('is-open')) close();
         else open();
@@ -378,7 +389,7 @@ function setupLanguageSelector() {
         const newLang = btn.getAttribute('data-lang') || 'ca';
         changeLanguage(newLang);
         close();
-        trigger.focus();
+        focusTriggerWithoutScroll();
     });
 
     document.addEventListener('click', (e) => {
@@ -390,7 +401,7 @@ function setupLanguageSelector() {
         if (e.key === 'Escape') {
             e.preventDefault();
             close();
-            trigger.focus();
+            focusTriggerWithoutScroll();
         }
     });
 }
