@@ -2,19 +2,13 @@
 #define CURRENT_LANG INTL_LANG
 
 // Wifi config
-//const char WLANSSID[] PROGMEM = "Freifunk-disabled";
-const char WLANSSID[] PROGMEM = "Freifunk";
+const char WLANSSID[] PROGMEM = "Freifunk-disabled";
 const char WLANPWD[] PROGMEM = "";
-#define WITH_WLANPWD false
 
 // BasicAuth config
 const char WWW_USERNAME[] PROGMEM = "admin";
 const char WWW_PASSWORD[] PROGMEM = "";
 #define WWW_BASICAUTH_ENABLED 0
-
-#define START_ON_FULL_MINUTE false
-#define START_ON_FULL_HOUR false
-#define SENSOR_CYCLIC_RESTART false
 
 // Sensor Wifi config (config mode)
 #define FS_SSID ""
@@ -25,14 +19,14 @@ const char WWW_PASSWORD[] PROGMEM = "";
 #define SSL_SENSORCOMMUNITY 0
 #define SEND2MADAVI 1
 #define SSL_MADAVI 0
-#define SEND2SENSEMAP 1
-#define SEND2FSAPP 1
+#define SEND2SENSEMAP 0
+#define SEND2FSAPP 0
 #define SSL_FSAPP 0
-#define SEND2AIRCMS 1
-#define SEND2MQTT 1
-#define SEND2INFLUX 1
-#define SEND2LORA 1
-#define SEND2CSV 1
+#define SEND2AIRCMS 0
+#define SEND2MQTT 0
+#define SEND2INFLUX 0
+#define SEND2LORA 0
+#define SEND2CSV 0
 #define SEND2CUSTOM 0
 
 // OpenSenseMap
@@ -46,8 +40,7 @@ enum LoggerEntry {
     Loggeraircms,
     LoggerInflux,
     LoggerCustom,
-    LoggerCount,
-    LoggerMQTT
+    LoggerCount
 };
 
 struct LoggerConfig {
@@ -101,56 +94,15 @@ static const char URL_CUSTOM[] PROGMEM = "/data.php";
 
 // define own InfluxDB
 static const char HOST_INFLUX[] PROGMEM = "influx.server";
-static const char URL_INFLUX[] PROGMEM = "/write?db=my InfluxDB";
+static const char URL_INFLUX[] PROGMEM = "/write?db=sensorcommunity";
 #define PORT_INFLUX 8086
 #define USER_INFLUX ""
 #define PWD_INFLUX ""
-static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "dnms";
+static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define SSL_INFLUX 0
-
-// define values for MQTT Broker
-static const char HOST_MQTT[] PROGMEM = "mqtt.broker";
-static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
-#define PORT_MQTT 1883
-#define USER_MQTT ""
-#define PWD_MQTT ""
-#define TLS_MQTT 0
-#define ID_AS_MQTT_SUB_TOPIC 1
-#define MQTT_KEEP_ALIVE 60
-#define MQTT_BUFFER_SIZE 2304
 
 //  === pin assignments for NodeMCU V2 board ===================================
 #if defined(ESP8266)
-// Some ESP8266 board profiles (e.g. generic) do not provide Dx aliases.
-// Provide fallback mappings to GPIO numbers to keep this config portable.
-#ifndef D0
-#define D0 16
-#endif
-#ifndef D1
-#define D1 5
-#endif
-#ifndef D2
-#define D2 4
-#endif
-#ifndef D3
-#define D3 0
-#endif
-#ifndef D4
-#define D4 2
-#endif
-#ifndef D5
-#define D5 14
-#endif
-#ifndef D6
-#define D6 12
-#endif
-#ifndef D7
-#define D7 13
-#endif
-#ifndef D8
-#define D8 15
-#endif
-
 // define pin for one wire sensors
 #define ONEWIRE_PIN D7
 
@@ -285,7 +237,7 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define PPD_API_PIN 5
 
 // SDS011, the more expensive version of the particle sensor
-#define SDS_READ 0
+#define SDS_READ 1
 #define SDS_API_PIN 1
 
 // PMS1003, PMS300, 3PMS5003, PMS6003, PMS7003
@@ -305,12 +257,6 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define IPS_READ 0
 #define IPS_API_PIN 1
 
-// Sensirion Sensirion I2C SEN5X
-#define SEN5X_READ 0
-#define SEN5X_API_PIN 16 // New pin n°! 1 for PM, 7 for the rest?
-#define SEN5X_WAITING_AFTER_LAST_READ 11000   // waiting time after last reading mesurement data in ms
-#define SEN5X_AUTO_CLEANING_INTERVAL 7200 // time in seconds
-
 // Sensirion SPS30, the more expensive version of the particle sensor
 #define SPS30_READ 0
 #define SPS30_API_PIN 1
@@ -322,7 +268,7 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define BMP_API_PIN 3
 
 // BMP280/BME280, temperature, pressure (humidity on BME280)
-#define BMX280_READ 0
+#define BMX280_READ 1
 #define BMP280_API_PIN 3
 #define BME280_API_PIN 11
 
@@ -334,36 +280,14 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define SCD30_READ 0
 #define SCD30_API_PIN 17
 
-// SHT4X, temperature, pressure, CO2
-#define SCD4X_READ 0
-#define SCD4X_API_PIN 17
-#define SCD4X_LOW_POWER 0
-
 // DS18B20, temperature
 #define DS18B20_READ 0
 #define DS18B20_API_PIN 13
 
 // DNMS Noise Measurement
-#define DNMS_I2C_GPIO_SCL 2 // D4
-#define DNMS_I2C_GPIO_SDA 0 // D3
-#define DNMS_READ 1
-#define DNMS_READ_Z 0
-#define DNMS_READ_SPECTRUM 0
-#define DNMS_READ_SPECTRUM_Z 0
-#define DNMS_2nd_INTERVAL 0
-#define DNMS_2nd_INTERVAL_Z 0
-#define DNMS_2nd_READ_SPECTRUM 0
-#define DNMS_2nd_READ_SPECTRUM_Z 0
-#define DNMS_2nd_INTERVAL_TIME "5"
+#define DNMS_READ 0
 #define DNMS_API_PIN 15
 #define DNMS_CORRECTION "0.0"
-#define DNMS_2nd_THRESHOLD "20.0"
-#define DNMS_2nd_NUMBER_MEASUREMENTS "120"
-#define DNMS_2nd_SWITCH_OUTPUT 0
-#define DNMS_2nd_GPIO_PIN "15"
-#define DNMS_ERROR_COUNT_MAX 10
-#define DNMS_ICS43434 1
-#define DNMS_IM72D128 0
 
 // Temp compensation
 #define TEMP_CORRECTION "0.0"
@@ -376,7 +300,7 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 #define MHZ19_READ 0
 
 // automatic firmware updates
-#define AUTO_UPDATE 0
+#define AUTO_UPDATE 1
 
 // use beta firmware
 #define USE_BETA 0
@@ -408,5 +332,5 @@ static const char MEASUREMENT_NAME_MQTT[] PROGMEM = "dnms";
 // Show device info on displays
 #define DISPLAY_DEVICE_INFO 1
 
-// Set powersave to false
-#define POWERSAVE 0
+// Set debug level for serial output?
+#define DEBUG 3
