@@ -681,7 +681,7 @@ static String SDS_version_date()
 		is_SDS_running = SDS_cmd(PmSensorCmd::Start);
 		delay(250);
 #if defined(ESP8266)
-		serialSDS.perform_work();
+    // serialSDS.perform_work(); 
 #endif
 		serialSDS.flush();
 		// Query Version/Date
@@ -1454,6 +1454,7 @@ static String form_select_lang()
 				 "<td>"
 				 "<select id='current_lang' name='current_lang'>"
 				 "<option value='BG'>Bulgarian (BG)</option>"
+				 "<option value='CA'>Català (CA)</option>"
 				 "<option value='CN'>中文 (CN)</option>"
 				 "<option value='CZ'>Český (CZ)</option>"
 				 "<option value='DE'>Deutsch (DE)</option>"
@@ -6174,11 +6175,11 @@ void loop(void)
 	MDNS.update();
 	if (cfg::npm_read)
 	{
-		serialNPM.perform_work();
+		//serialNPM.perform_work();
 	}
 	else
 	{
-		serialSDS.perform_work();
+		//serialSDS.perform_work();
 	}
 
 #endif

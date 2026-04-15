@@ -5,6 +5,8 @@
 #include "intl_bg.h"
 #elif defined(INTL_BR)
 #include "intl_br.h"
+#elif defined(INTL_CA)
+#include "intl_ca.h"
 #elif defined(INTL_CN)
 #include "intl_cn.h"
 #elif defined(INTL_CZ)
