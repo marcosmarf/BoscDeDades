@@ -13,22 +13,38 @@
     justify-content: center;
     gap: 0.7em;
     font-family: var(--font-mono);
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     font-weight: 700;
-    border: 2px solid var(--btn-color);
+    border: 1.5px solid #7FE5B8;
     color: #3bbf6a;
     background: rgba(127, 229, 184, 0.12);
-    border-radius: 0.8em;
-    padding: 0.7em 1.5em;
+    border-radius: 1.2em;
+    padding: 0.4em 1.1em;
     transition: background 0.18s, color 0.18s, border 0.18s;
     text-decoration: none;
-    box-shadow: 0 2px 12px rgba(127,229,184,0.08);
-    margin-bottom: 0.2em;
+    box-shadow: none;
+    margin-bottom: 0.5rem;
 }
 .dwn-btn-modern:hover {
     background: #7FE5B8;
     color: #0a3d1e;
     border-color: #3bbf6a;
+}
+
+.dwn-btn-modern.is-striked-red {
+    position: relative;
+}
+
+.dwn-btn-modern.is-striked-red::after {
+    content: "";
+    position: absolute;
+    left: 0.45em;
+    right: 0.45em;
+    top: 50%;
+    height: 2px;
+    background: #ff3b3b;
+    transform: rotate(-7deg);
+    pointer-events: none;
 }
 /* --- BOTONES DE DESCARGA --- */
 .dwn-btns-container {
@@ -599,10 +615,11 @@ ul ul li {
     margin-top: 1.25rem;
 }
 
-#install-title {
+#install-title,
+#maleta-title {
     display: block;
     width: fit-content;
-    margin: 0 auto 1.2rem;
+    margin: 0 auto 1.6rem;
     text-align: center;
 }
 
@@ -628,6 +645,19 @@ ul ul li {
     line-height: 1.35;
 }
 
+.install-steps-list.maleta-bullets {
+    list-style: disc;
+    margin-left: 1.4rem;
+}
+
+.install-steps-list.maleta-bullets li {
+    padding-left: 0;
+}
+
+.install-steps-list.maleta-bullets li::marker {
+    color: var(--btn-color);
+}
+
 .install-note {
     margin: 0.25rem 0 0;
     color: rgba(255, 255, 255, 0.78);
@@ -636,10 +666,26 @@ ul ul li {
     max-width: 100%;
 }
 
+#maleta-note {
+    font-style: italic;
+}
+
 .video-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+}
+
+.maleta-single-media {
+    display: block;
+}
+
+.maleta-single-media .video-card {
+    height: 100%;
+}
+
+.maleta-single-media .video-embed {
+    aspect-ratio: 16 / 9;
 }
 
 .video-card {
@@ -704,7 +750,7 @@ ul ul li {
 
 .video-caption {
     margin-top: 0.55rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-main);
     font-size: 0.92rem;
     color: rgba(255, 255, 255, 0.78);
 }
@@ -750,6 +796,7 @@ ul ul li {
 
 /* --- 11. FOOTER BIG --- */
 .footer-big {
+    margin-top: 3rem;
     padding: 0rem 1rem;
     text-align: left;
 }
