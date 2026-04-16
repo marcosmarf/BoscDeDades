@@ -12,7 +12,7 @@ const char WWW_PASSWORD[] PROGMEM = "";
 
 // Sensor Wifi config (config mode)
 #define FS_SSID ""
-#define FS_PWD "airrohrcfg"
+#define FS_PWD "airrohrcfg" //The wifi password
 
 // Where to send the data?
 #define SEND2SENSORCOMMUNITY 1
@@ -102,7 +102,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define SSL_INFLUX 0
 
 
-//  === FALLBACK pin assignments ===================================
+//  === PIN MAPPING ===================================
 #ifndef D0
 #define D0 16
 #define D1 5
@@ -113,9 +113,18 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define D6 12
 #define D7 13
 #define D8 15
-#define D9 3
-#define D10 1
+#define RX 3
+#define TX 1
+
+#define S3 10
+#define S2 9
+#define S1 8
+#define SC 11
+#define S0 7
+#define SK 6
 #endif
+
+
 //  === pin assignments for NodeMCU V2 board ===================================
 #if defined(ESP8266)
 // define pin for one wire sensors
@@ -130,24 +139,24 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define PM_SERIAL_TX D2
 
 // define pins for I2C
-#define I2C_PIN_SCL D6
-#define I2C_PIN_SDA D5
+#define I2C_PIN_SCL D6 //Pins for integrated OLED
+#define I2C_PIN_SDA D5 //Pins for integrated OLED
 
 // define serial interface pins for GPS modules
-#define GPS_SERIAL_RX D5
-#define GPS_SERIAL_TX D6
+#define GPS_SERIAL_RX NULL
+#define GPS_SERIAL_TX NULL
 
 // define serial interface pins for Next PM Sensor
-#define NPM_SERIAL_RX D1
-#define NPM_SERIAL_TX D2
+#define NPM_SERIAL_RX NULL
+#define NPM_SERIAL_TX NULL
 
 // define serial interface pins for IPS7100 Sensor
-#define IPS_SERIAL_RX D1
-#define IPS_SERIAL_TX D2
+#define IPS_SERIAL_RX NULL
+#define IPS_SERIAL_TX NULL
 
 // PPD42NS, the cheaper version of the particle sensor
-#define PPD_PIN_PM1 GPS_SERIAL_TX
-#define PPD_PIN_PM2 GPS_SERIAL_RX
+#define PPD_PIN_PM1 NULL
+#define PPD_PIN_PM2 NULL
 #endif
 
 
@@ -188,6 +197,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 //#define RFM69_INT D4
 #endif
 
+// UNUSED BOARDS FOR BOSC DE DADES
 //  === pin assignments for lolin_d32_pro board ===================================
 #if defined(ARDUINO_LOLIN_D32_PRO)
 #define ONEWIRE_PIN D32
@@ -239,80 +249,80 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 
 
 // DHT22, temperature, humidity
-#define DHT_READ 0
-#define DHT_TYPE DHT22
-#define DHT_API_PIN 7
+#define DHT_READ NULL
+#define DHT_TYPE NULL//DHT22
+#define DHT_API_PIN NULL//7
 
 // HTU21D, temperature, humidity
-#define HTU21D_READ 0
-#define HTU21D_API_PIN 7
+#define HTU21D_READ NULL//0
+#define HTU21D_API_PIN NULL//7
 
 // PPD42NS, the cheaper version of the particle sensor
-#define PPD_READ 0
-#define PPD_API_PIN 5
+#define PPD_READ NULL//0
+#define PPD_API_PIN NULL//5
 
 // SDS011, the more expensive version of the particle sensor
-#define SDS_READ 1
-#define SDS_API_PIN 1
+#define SDS_READ NULL//1
+#define SDS_API_PIN NULL//1
 
 // PMS1003, PMS300, 3PMS5003, PMS6003, PMS7003
-#define PMS_READ 0
-#define PMS_API_PIN 1
+#define PMS_READ NULL//0
+#define PMS_API_PIN NULL//1
 
 // Honeywell PM sensor
-#define HPM_READ 0
-#define HPM_API_PIN 1
+#define HPM_READ NULL//0
+#define HPM_API_PIN NULL//1
 
 // Tera Sensor Next PM sensor
-#define NPM_READ 0
-#define NPM_API_PIN 1
-#define NPM_FULLTIME 0
+#define NPM_READ NULL//0
+#define NPM_API_PIN NULL//1
+#define NPM_FULLTIME NULL//0
 
 // Piera Systems IPS-7100
-#define IPS_READ 0
-#define IPS_API_PIN 1
+#define IPS_READ NULL//0
+#define IPS_API_PIN NULL//1
 
 // Sensirion SPS30, the more expensive version of the particle sensor
-#define SPS30_READ 0
-#define SPS30_API_PIN 1
-#define SPS30_WAITING_AFTER_LAST_READ 11000   // waiting time after last reading mesurement data in ms
-#define SPS30_AUTO_CLEANING_INTERVAL 7200 // time in seconds
+#define SPS30_READ NULL//0
+#define SPS30_API_PIN NULL//1
+#define SPS30_WAITING_AFTER_LAST_READ NULL//11000   // waiting time after last reading mesurement data in ms
+#define SPS30_AUTO_CLEANING_INTERVAL NULL//7200 // time in seconds
 
 // BMP180, temperature, pressure
-#define BMP_READ 0
-#define BMP_API_PIN 3
+#define BMP_READ NULL//0
+#define BMP_API_PIN NULL//3
 
 // BMP280/BME280, temperature, pressure (humidity on BME280)
-#define BMX280_READ 1
-#define BMP280_API_PIN 3
-#define BME280_API_PIN 11
+#define BMX280_READ D3
+#define BMP280_API_PIN D4 //SCL
+#define BME280_API_PIN D4 //SCL
 
 // SHT3x, temperature, pressure
-#define SHT3X_READ 0
-#define SHT3X_API_PIN 7
+#define SHT3X_READ NULL//0
+#define SHT3X_API_PIN NULL//7
 
 // SHT3x, temperature, pressure, CO2
-#define SCD30_READ 0
-#define SCD30_API_PIN 17
+#define SCD30_READ NULL//0
+#define SCD30_API_PIN NULL//17
 
 // DS18B20, temperature
-#define DS18B20_READ 0
-#define DS18B20_API_PIN 13
+#define DS18B20_READ NULL//0
+#define DS18B20_API_PIN NULL//13
 
 // DNMS Noise Measurement
-#define DNMS_READ 0
-#define DNMS_API_PIN 15
+#define DNMS_READ NULL//0
+#define DNMS_API_PIN NULL//15
 #define DNMS_CORRECTION "0.0"
 
 // Temp compensation
 #define TEMP_CORRECTION "0.0"
 
 // GPS, preferred Neo-6M
-#define GPS_READ 0
-#define GPS_API_PIN 9
+#define GPS_READ NULL//0
+#define GPS_API_PIN NULL//9
 
 // MHZ19 CO2 sensor
-#define MHZ19_READ 0
+#define MHZ19_READ NULL//0
 
 // automatic firmware updates
 #define AUTO_UPDATE 1
@@ -342,10 +352,10 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define HAS_LCD2004_27 0
 
 // Show wifi info on displays
-#define DISPLAY_WIFI_INFO 1
+#define DISPLAY_WIFI_INFO 0
 
 // Show device info on displays
-#define DISPLAY_DEVICE_INFO 1
+#define DISPLAY_DEVICE_INFO 0
 
 // Set debug level for serial output?
 #define DEBUG 3
