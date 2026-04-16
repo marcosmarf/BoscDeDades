@@ -130,8 +130,8 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define PM_SERIAL_TX D2
 
 // define pins for I2C
-#define I2C_PIN_SCL D4
-#define I2C_PIN_SDA D3
+#define I2C_PIN_SCL D6
+#define I2C_PIN_SDA D5
 
 // define serial interface pins for GPS modules
 #define GPS_SERIAL_RX D5
@@ -321,7 +321,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define USE_BETA 0
 
 // OLED Display SSD1306 connected?
-#define HAS_DISPLAY 0
+#define HAS_DISPLAY 1
 
 // OLED Display SH1106 connected?
 #define HAS_SH1106 0
