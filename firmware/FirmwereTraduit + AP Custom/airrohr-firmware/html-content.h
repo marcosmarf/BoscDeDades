@@ -45,29 +45,33 @@ const char SENSORS_DNMS[] PROGMEM = "DNMS";
 const char WEB_PAGE_HEADER[] PROGMEM = "<!DOCTYPE html><html lang='" INTL_LANG "'>\
 <head>\
 <meta charset='utf-8'/>\
+<meta name='viewport' content='width=device-width,initial-scale=1'/>\
+<link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap' rel='stylesheet'>\
 <title>{t}</title>";
 
 const char WEB_PAGE_STATIC_CSS[] PROGMEM = "\
-body{font-family:Arial,sans-serif;margin:0}\
-.content{margin:10px}\
-.footer{height:48px;background:#f5f5f5;width:100%}\
-.r{text-align:right}\
-td{vertical-align:top}\
-.v>tbody>tr:nth-child(odd){background:#efefef}\
-.b{text-decoration:none;padding:10px;background:#2a9;color:#fff;display:block;width:auto;border-radius:5px;}\
-.wifi{background:0 0;color:#00f;padding:5px;display:inline;border:0;}\
-input[type=text]{width:100%}\
-input[type=password]{width:100%}\
-input[type=submit]{color:#fff;text-align:left;cursor:pointer;border-radius:5px;font-size:medium;background:#b33;padding:9px!important;width:100%;border-style:none}\
-input[type=submit]:hover{background:#d44}\
-.s_green{padding:9px !important;width:100%;border-style:none;background:#3ba;color:#fff;text-align:left}\
-.tabs{display:flex;flex-direction:row;align-items:stretch;align-content:flex-end;justify-content:flex-start}\
-.tab{padding:10px 20px;display:inline-block;color:#333}\
-.panels{min-height:200px;overflow:hidden;padding:20px;border:2px solid #3ba;margin-bottom:1em;}\
-.radio{display:none}.panel{display:none}\
-.canvas{min-height:118px;background:#3ba;margin-bottom:20px;}\
-#r4:checked~.panels>#panel4,#r1:checked~.panels>#panel1,#r3:checked~.panels>#panel3,#r2:checked~.panels>#panel2{display:block}\
-#r4:checked~.tabs>#tab4,#r1:checked~.tabs>#tab1,#r3:checked~.tabs>#tab3,#r2:checked~.tabs>#tab2{background:#3ba;color:#fff}";
+:root{--bg:#080808;--txt:#fff;--accent:#7FE5B8;--accent-dark:#3bbf6a;--glass:rgba(127,229,184,0.12)}\
+body{background-color:var(--bg);color:var(--txt);font-family:'Montserrat',sans-serif;margin:0;line-height:1.5}\
+.content{margin:20px auto;max-width:800px;padding:25px;border:1px solid #333;border-radius:1.5rem;background:#111;box-shadow:0 10px 30px rgba(0,0,0,0.5)}\
+h2{color:var(--accent);font-weight:800;letter-spacing:-0.02em;border-bottom:1px solid #222;padding-bottom:10px}\
+/* Tablas de Datos */\
+.v{width:100%;border-collapse:collapse;margin:15px 0;font-family:monospace}\
+.v td{padding:12px;border-bottom:1px solid #222}\
+.v tr:hover{background:rgba(255,255,255,0.03)}\
+.r{text-align:right;font-weight:bold;color:var(--accent-dark)}\
+/* Botones Estilo Bosc de Dades */\
+.b,input[type='submit']{background:var(--glass);color:var(--accent-dark);border:1.5px solid var(--accent);border-radius:1.2em;padding:12px 24px;cursor:pointer;font-weight:700;font-family:monospace;text-transform:uppercase;transition:0.2s;display:inline-block;text-decoration:none;width:100%;margin-top:10px}\
+.b:hover,input[type='submit']:hover{background:var(--accent);color:#0a3d1e}\
+/* Formularios e Inputs */\
+input[type='text'],input[type='password'],input[type='number'],select{width:calc(100% - 24px);padding:12px;border-radius:0.8rem;border:1px solid #333;background:#050505;color:#fff;margin:8px 0;font-family:monospace}\
+input:focus{border-color:var(--accent);outline:none}\
+/* Lógica de Pestañas (Original de AirRohr) */\
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}\
+.tab{padding:10px 18px;background:#222;border-radius:12px;cursor:pointer;font-size:0.9em;font-weight:600}\
+.radio,.panel{display:none}\
+#r1:checked~.tabs>#tab1,#r2:checked~.tabs>#tab2,#r3:checked~.tabs>#tab3,#r4:checked~.tabs>#tab4,#r5:checked~.tabs>#tab5{background:var(--accent);color:#0a3d1e}\
+#r1:checked~.panels>#panel1,#r2:checked~.panels>#panel2,#r3:checked~.panels>#panel3,#r4:checked~.panels>#panel4,#r5:checked~.panels>#panel5{display:block}\
+.footer{margin-top:30px;font-size:0.8em;color:#666;text-align:center;border-top:1px solid #222;padding-top:20px}";
 
 #define STATIC_PREFIX "/" INTL_LANG "_s1"
 

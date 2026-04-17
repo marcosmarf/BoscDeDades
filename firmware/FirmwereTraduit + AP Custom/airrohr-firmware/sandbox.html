@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Bosc de Dades - Inici</title>
+    
+    <style>
+        :root {
+            --bg: #080808;
+            --txt: #fff;
+            --accent: #7FE5B8;
+            --accent-dark: #3bbf6a;
+            --glass: rgba(127,229,184,0.12);
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--txt);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .content {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 1.5rem;
+            background: #111;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h2 {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+        /* Tablas de Datos */
+        .v {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .v td {
+            padding: 12px;
+            border-bottom: 1px solid #222;
+        }
+        .v tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        .r {
+            text-align: right;
+            font-weight: bold;
+            color: var(--accent-dark);
+        }
+        /* Botones Estilo Bosc de Dades */
+        .b, input[type='submit'] {
+            background: var(--glass);
+            color: var(--accent-dark);
+            border: 1.5px solid var(--accent);
+            border-radius: 1.2em;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: monospace;
+            text-transform: uppercase;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            width: 100%;
+            margin-top: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .b:hover, input[type='submit']:hover {
+            background: var(--accent);
+            color: #0a3d1e;
+        }
+        /* Formularios e Inputs */
+        input[type='text'], input[type='password'], input[type='number'], select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border-radius: 0.8rem;
+            border: 1px solid #333;
+            background: #050505;
+            color: #fff;
+            margin: 8px 0;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+        /* Lógica de Pestañas (Original de AirRohr) */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 18px;
+            background: #222;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        .radio, .panel {
+            display: none;
+        }
+        #r1:checked ~ .tabs > #tab1, #r2:checked ~ .tabs > #tab2, #r3:checked ~ .tabs > #tab3, #r4:checked ~ .tabs > #tab4, #r5:checked ~ .tabs > #tab5 {
+            background: var(--accent);
+            color: #0a3d1e;
+        }
+        #r1:checked ~ .panels > #panel1, #r2:checked ~ .panels > #panel2, #r3:checked ~ .panels > #panel3, #r4:checked ~ .panels > #panel4, #r5:checked ~ .panels > #panel5 {
+            display: block;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='content'>
+        <div style='text-align:center;margin-bottom:20px;'>
+            <h1 style='font-weight:800;letter-spacing:2px;color:#fff;margin:0;'>BOSC DE DADES</h1>
+            <p style='font-size:0.7em;color:var(--accent-dark);margin-top:5px;'>SISTEMA DE MONITORITZACIÓ CIUTADANA</p>
+        </div>
+
+        <a class='b' href='/values'>Valors actuals</a><br/>
+        <a class='b' href='/status'>Estat de les connexions</a><br/>
+        <a class='b' href='https://maps.sensor.community/' target='_blank' rel='noreferrer'>Mapa de sensors actius</a><br/>
+        <a class='b' href='/config'>Configuració</a><br/>
+        <a class='b' href='/removeConfig'>Esborrar configuració</a><br/>
+        <a class='b' href='/reset'>Reiniciar el sensor</a><br/>
+        <a class='b' href='/debug'>Mode depuració</a><br/>
+
+        <br/><br/>
+        <a class='b' href='/' style='display:inline;'>Tornar a l'inici</a>
+        <br/><br/><br/>
+    </div>
+
+    <footer class='footer'>
+        <div style='padding:16px'>
+            <a href='https://codefor.de/stuttgart/' target='_blank' rel='noreferrer' style='color:#3ba;'>
+                &copy; Open Knowledge Lab Stuttgart a.o. (Code for Germany)
+            </a>&nbsp;&nbsp;
+            (<a href='https://github.com/opendata-stuttgart/sensors-software/labels/bug' target='_blank' rel='noreferrer'>Reportar un problema</a>)
+        </div>
+    </footer>
+</body>
+</html>
