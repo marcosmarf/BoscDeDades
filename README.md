@@ -15,7 +15,7 @@ Un agraïment especial als pioners que han fet possible aquest projecte:
 
 ### 👥 L'Equip de BoscDeDades
 El nostre equip de 4 coordinadors ha integrat aquestes tecnologies per crear un kit d'eines dedicat a escoles i centres cívics:
-* **[David Otero]:** Integració de Hardware i Arquitectura de bus I2C.
+* **[Adrià de la Iglesia]:** Traducció i adaptació del firmware i del webSite.
 * **[Javier Rodríguez]:** Responsable Pedagògic i Disseny d'Unitats Didàctiques.
 * **[Marco A. Rodríguez]:** Desenvolupament de Software i Dashboard Web.
 * **[Marco A. Rodríguez]:** Dinamització Comunitària i Proves de Camp.
