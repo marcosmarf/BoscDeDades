@@ -27,7 +27,7 @@ const char WWW_PASSWORD[] PROGMEM = "";
 #define SEND2INFLUX 0
 #define SEND2LORA 0
 #define SEND2CSV 0
-#define SEND2CUSTOM 0
+#define SEND2CUSTOM 1
 
 // OpenSenseMap
 #define SENSEBOXID ""
@@ -85,7 +85,7 @@ static const char NTP_SERVER_1[] PROGMEM = "0.pool.ntp.org";
 static const char NTP_SERVER_2[] PROGMEM = "1.pool.ntp.org";
 
 // define own API
-static const char HOST_CUSTOM[] PROGMEM = "192.168.234.1";
+static const char HOST_CUSTOM[] PROGMEM = "boscdedades.cat";
 static const char URL_CUSTOM[] PROGMEM = "/data.php";
 #define PORT_CUSTOM 80
 #define USER_CUSTOM ""
@@ -139,12 +139,12 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define PM_SERIAL_TX D2
 
 // define pins for I2C
-#define I2C_PIN_SCL D6 //Pins for integrated OLED
-#define I2C_PIN_SDA D5 //Pins for integrated OLED
+#define I2C_PIN_SCL D4 //Pins for integrated OLED
+#define I2C_PIN_SDA D3 //Pins for integrated OLED
 
 // define serial interface pins for GPS modules
-#define GPS_SERIAL_RX NULL
-#define GPS_SERIAL_TX NULL
+#define GPS_SERIAL_RX RX
+#define GPS_SERIAL_TX TX
 
 // define serial interface pins for Next PM Sensor
 #define NPM_SERIAL_RX NULL
@@ -249,70 +249,87 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 
 
 // DHT22, temperature, humidity
-#define DHT_READ NULL
-#define DHT_TYPE NULL//DHT22
-#define DHT_API_PIN NULL//7
+#define DHT_READ 0
+#define DHT_TYPE DHT22
+#define DHT_API_PIN 7
 
 // HTU21D, temperature, humidity
-#define HTU21D_READ NULL//0
-#define HTU21D_API_PIN NULL//7
+#define HTU21D_READ 0
+#define HTU21D_API_PIN 7
 
 // PPD42NS, the cheaper version of the particle sensor
-#define PPD_READ NULL//0
-#define PPD_API_PIN NULL//5
+#define PPD_READ 0
+#define PPD_API_PIN 5
 
 // SDS011, the more expensive version of the particle sensor
-#define SDS_READ NULL//1
-#define SDS_API_PIN NULL//1
+#define SDS_READ 0
+#define SDS_API_PIN 1
 
 // PMS1003, PMS300, 3PMS5003, PMS6003, PMS7003
-#define PMS_READ NULL//0
-#define PMS_API_PIN NULL//1
+#define PMS_READ 0
+#define PMS_API_PIN 1
 
 // Honeywell PM sensor
-#define HPM_READ NULL//0
-#define HPM_API_PIN NULL//1
+#define HPM_READ 0
+#define HPM_API_PIN 1
 
 // Tera Sensor Next PM sensor
-#define NPM_READ NULL//0
-#define NPM_API_PIN NULL//1
-#define NPM_FULLTIME NULL//0
+#define NPM_READ 0
+#define NPM_API_PIN 1
+#define NPM_FULLTIME 0
 
 // Piera Systems IPS-7100
-#define IPS_READ NULL//0
-#define IPS_API_PIN NULL//1
+#define IPS_READ 0
+#define IPS_API_PIN 1
 
 // Sensirion SPS30, the more expensive version of the particle sensor
-#define SPS30_READ NULL//0
-#define SPS30_API_PIN NULL//1
-#define SPS30_WAITING_AFTER_LAST_READ NULL//11000   // waiting time after last reading mesurement data in ms
-#define SPS30_AUTO_CLEANING_INTERVAL NULL//7200 // time in seconds
+#define SPS30_READ 0
+#define SPS30_API_PIN 1
+#define SPS30_WAITING_AFTER_LAST_READ 11000   // waiting time after last reading mesurement data in ms
+#define SPS30_AUTO_CLEANING_INTERVAL 7200 // time in seconds
 
 // BMP180, temperature, pressure
-#define BMP_READ NULL//0
-#define BMP_API_PIN NULL//3
+#define BMP_READ 0//0
+#define BMP_API_PIN 3//3
 
 // BMP280/BME280, temperature, pressure (humidity on BME280)
-#define BMX280_READ D3
-#define BMP280_API_PIN D4 //SCL
-#define BME280_API_PIN D4 //SCL
+#define BMX280_READ 0 //0
+#define BMP280_API_PIN 3 //3
+#define BME280_API_PIN 11 //11
 
 // SHT3x, temperature, pressure
-#define SHT3X_READ NULL//0
-#define SHT3X_API_PIN NULL//7
+#define SHT3X_READ 0
+#define SHT3X_API_PIN 7
 
 // SHT3x, temperature, pressure, CO2
-#define SCD30_READ NULL//0
-#define SCD30_API_PIN NULL//17
+#define SCD30_READ 0
+#define SCD30_API_PIN 17
 
 // DS18B20, temperature
-#define DS18B20_READ NULL//0
-#define DS18B20_API_PIN NULL//13
+#define DS18B20_READ 0
+#define DS18B20_API_PIN 13
 
 // DNMS Noise Measurement
-#define DNMS_READ NULL//0
-#define DNMS_API_PIN NULL//15
+#define DNMS_I2C_GPIO_SCL 2 // D4
+#define DNMS_I2C_GPIO_SDA 0 // D3
+#define DNMS_READ 1
+#define DNMS_READ_Z 0
+#define DNMS_READ_SPECTRUM 0
+#define DNMS_READ_SPECTRUM_Z 0
+#define DNMS_2nd_INTERVAL 0
+#define DNMS_2nd_INTERVAL_Z 0
+#define DNMS_2nd_READ_SPECTRUM 0;
+#define DNMS_2nd_READ_SPECTRUM_Z 0;
+#define DNMS_2nd_INTERVAL_TIME "5"
+#define DNMS_API_PIN 15
 #define DNMS_CORRECTION "0.0"
+#define DNMS_2nd_THRESHOLD "20.0"
+#define DNMS_2nd_NUMBER_MEASUREMENTS "120"
+#define DNMS_2nd_SWITCH_OUTPUT 0
+#define DNMS_2nd_GPIO_PIN "15"
+#define DNMS_ERROR_COUNT_MAX 10
+#define DNMS_ICS43434 1
+#define DNMS_IM72D128 0
 
 // Temp compensation
 #define TEMP_CORRECTION "0.0"
@@ -331,7 +348,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define USE_BETA 0
 
 // OLED Display SSD1306 connected?
-#define HAS_DISPLAY 1
+#define HAS_DISPLAY 0
 
 // OLED Display SH1106 connected?
 #define HAS_SH1106 0
