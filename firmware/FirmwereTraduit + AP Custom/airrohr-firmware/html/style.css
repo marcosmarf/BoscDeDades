@@ -16,9 +16,17 @@
     line-height: 1.5;
   }
   .canvas {
-    overflow: hidden;
-    padding: 8px 16px;
-    min-height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 25px;
+    background: #111;
+    border-bottom: 1px solid #222;
+  }
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
   .content {
     margin: 20px auto;
