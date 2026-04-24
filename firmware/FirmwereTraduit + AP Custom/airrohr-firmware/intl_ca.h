@@ -8,7 +8,7 @@
  */
 
 #define INTL_LANG "CA"
-#define INTL_PM_SENSOR "Sensor de soroll DNMS"
+#define INTL_PM_SENSOR "Sensor Mediambiental - Bosc De Dades"
 const char INTL_CONFIGURATION[] PROGMEM = "Configuració";
 #define INTL_WIFI_SETTINGS "Dades WiFi"
 #define INTL_WIFI_WITH_PWD "Amb contrasenya WLAN"

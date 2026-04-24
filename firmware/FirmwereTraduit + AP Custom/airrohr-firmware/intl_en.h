@@ -9,7 +9,7 @@
  */
 
 #define INTL_LANG "EN"
-#define INTL_PM_SENSOR "Particulate matter sensor"
+#define INTL_PM_SENSOR "Enviromental Sensor - Bosc De Dades"
 const char INTL_CONFIGURATION[] PROGMEM = "Configuration";
 #define INTL_WIFI_SETTINGS "WiFi Settings"
 #define INTL_WIFI_NETWORKS "Loading wifi networks ..."
