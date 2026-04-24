@@ -96,7 +96,7 @@
         "maleta-step3": "Plànol tècnic de Mataró per a la geolocalització de dades",
         "maleta-step4": "Revistes i dossiers amb situacions d'aprenentatge (SdA) alineades amb el currículum",
         "maleta-note": "Els sensors d'aquest projecte són de tipus DIY (Do-It-Yourself). Tot i la seva precisió per a l'anàlisi de tendències, no són instruments de mesura validats per la indústria ni per organismes oficials de metrologia",
-        "maleta-video1-caption": "Recurs 1: Guia docent",
+        "maleta-video1-caption": "Recurs 1: Maleta pedagògica",
         "maleta-video2-caption": "Recurs 2: Materials visuals",
         "maleta-video3-caption": "Recurs 3: Dinàmiques de taller",
         "maleta-video4-caption": "Recurs 4: Activitats d'anàlisi",

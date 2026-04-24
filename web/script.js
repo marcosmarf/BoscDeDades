@@ -54,30 +54,24 @@
 })();
 
 (function() {
-    const canvas = document.getElementById('bgCanvas');
-    if (!canvas) {
-        console.error('Canvas no encontrado');
-        return;
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-        console.error('No se pudo obtener contexto 2D del canvas');
-        return;
-    }
+    let canvas = null;
+    let ctx = null;
 
     let width, height;
     let stars = [];
     let mouseX = 0;
     let mouseY = 0;
+    let scrollY = 0;
 
     // Configuración del efecto parallax
     const PARALLAX_FACTOR = 0.15; // Aumentado de 0.05 para más movimiento
     const MOUSE_DAMPING = 0.1;
     let offsetX = 0;
     let offsetY = 0;
+    let scrollOffsetY = 0;
     let targetOffsetX = 0;
     let targetOffsetY = 0;
+    let targetScrollOffsetY = 0;
 
     class Star {
         constructor(x, y, z) {
@@ -156,6 +150,7 @@
     }
 
     function init() {
+        if (!canvas || !ctx) return;
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         
@@ -172,15 +167,17 @@
     }
 
     function animate() {
+        if (!ctx) return;
         ctx.clearRect(0, 0, width, height);
         
         // Suavizar el movimiento del parallax
         offsetX += (targetOffsetX - offsetX) * MOUSE_DAMPING;
         offsetY += (targetOffsetY - offsetY) * MOUSE_DAMPING;
+        scrollOffsetY += (targetScrollOffsetY - scrollOffsetY) * MOUSE_DAMPING;
 
         // Actualizar y dibujar estrellas
         stars.forEach(star => {
-            star.update(offsetX, offsetY);
+            star.update(offsetX, offsetY + scrollOffsetY);
             
             // Wrapping: las estrellas se repiten si salen del canvas
             if (star.x < 0) star.x += width;
@@ -205,18 +202,37 @@
         targetOffsetY = (mouseY - centerY) * 0.5;
     });
 
-    window.addEventListener('resize', init);
-    
-    // Iniciar cuando el documento esté listo
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            init();
-            animate();
-        });
-    }
-    else {
+    window.addEventListener('scroll', () => {
+        scrollY = window.scrollY || window.pageYOffset || 0;
+        targetScrollOffsetY = -scrollY * 0.15;
+    });
+
+    function startStarfield() {
+        canvas = document.getElementById('bgCanvas');
+        if (!canvas) {
+            console.error('Canvas no encontrado');
+            return;
+        }
+
+        ctx = canvas.getContext('2d');
+        if (!ctx) {
+            console.error('No se pudo obtener contexto 2D del canvas');
+            return;
+        }
+
+        window.addEventListener('resize', init);
+        scrollY = window.scrollY || window.pageYOffset || 0;
+        targetScrollOffsetY = -scrollY * 0.15;
+        scrollOffsetY = targetScrollOffsetY;
         init();
         animate();
+    }
+
+    // Iniciar cuando el documento esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startStarfield, { once: true });
+    } else {
+        startStarfield();
     }
 })();
 
@@ -263,7 +279,7 @@
         setFeedback(tr('msg-contact-sending', 'Sending…'), 'success');
 
         try {
-            const response = await fetch('https://formspree.io/f/xnjgjyao', {
+            const response = await fetch('https://formspree.io/f/xqewpqoq', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
