@@ -152,7 +152,7 @@ const char WEB_PAGE_HEADER_HEAD[] PROGMEM =
     "<img src='" STATIC_PREFIX "?r=logo' alt='Logo' style='height:56px;width:auto;display:block;'/></a>";
 
 const char WEB_PAGE_HEADER_BODY[] PROGMEM =
-    "<h3 style='margin:0 10px; color:#fff;'>" INTL_PM_SENSOR "</h3>"
+    "<h3 style='margin:0 10px; color:#fff;'>" "SENSOR DEL BOSC DE DADES" "</h3>"
     "<br/><small style='color:#fff;font-weight:700'>ID: {id} ({macid})<br/>"
     INTL_FIRMWARE ": " SOFTWARE_VERSION_STR "/" INTL_LANG "&nbsp;(" __DATE__ ")<br/>"
     "</small></div><div class='content'><h4>" INTL_HOME " {n} {t}</h4>";
