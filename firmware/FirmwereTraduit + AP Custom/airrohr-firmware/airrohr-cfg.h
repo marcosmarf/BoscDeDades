@@ -60,6 +60,7 @@ enum ConfigShapeId {
 	Config_send2sensemap,
 	Config_send2fsapp,
 	Config_send2aircms,
+	Config_send2boscdedades,
 	Config_send2csv,
 	Config_auto_update,
 	Config_use_beta,
@@ -132,6 +133,7 @@ static constexpr char CFG_KEY_SSL_MADAVI[] PROGMEM = "ssl_madavi";
 static constexpr char CFG_KEY_SEND2SENSEMAP[] PROGMEM = "send2sensemap";
 static constexpr char CFG_KEY_SEND2FSAPP[] PROGMEM = "send2fsapp";
 static constexpr char CFG_KEY_SEND2AIRCMS[] PROGMEM = "send2aircms";
+static constexpr char CFG_KEY_SEND2BOSCDEDADES[] PROGMEM = "send2boscdedades";
 static constexpr char CFG_KEY_SEND2CSV[] PROGMEM = "send2csv";
 static constexpr char CFG_KEY_AUTO_UPDATE[] PROGMEM = "auto_update";
 static constexpr char CFG_KEY_USE_BETA[] PROGMEM = "use_beta";
@@ -204,6 +206,7 @@ static constexpr ConfigShapeEntry configShape[] PROGMEM = {
 	{ Config_Type_Bool, 0, CFG_KEY_SEND2SENSEMAP, &cfg::send2sensemap },
 	{ Config_Type_Bool, 0, CFG_KEY_SEND2FSAPP, &cfg::send2fsapp },
 	{ Config_Type_Bool, 0, CFG_KEY_SEND2AIRCMS, &cfg::send2aircms },
+	{ Config_Type_Bool, 0, CFG_KEY_SEND2BOSCDEDADES, &cfg::send2boscdedades },
 	{ Config_Type_Bool, 0, CFG_KEY_SEND2CSV, &cfg::send2csv },
 	{ Config_Type_Bool, 0, CFG_KEY_AUTO_UPDATE, &cfg::auto_update },
 	{ Config_Type_Bool, 0, CFG_KEY_USE_BETA, &cfg::use_beta },

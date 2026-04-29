@@ -2,7 +2,7 @@
 #define CURRENT_LANG INTL_LANG
 
 // Wifi config
-const char WLANSSID[] PROGMEM = "Freifunk-disabled";
+const char WLANSSID[] PROGMEM = "Wifi-null";
 const char WLANPWD[] PROGMEM = "";
 
 // BasicAuth config
@@ -27,7 +27,9 @@ const char WWW_PASSWORD[] PROGMEM = "";
 #define SEND2INFLUX 0
 #define SEND2LORA 0
 #define SEND2CSV 0
-#define SEND2CUSTOM 1
+#define SEND2BOSCDEDADES 1
+#define SSL_BOSCDEDADES 0
+#define SEND2CUSTOM 0
 
 // OpenSenseMap
 #define SENSEBOXID ""
@@ -39,6 +41,7 @@ enum LoggerEntry {
     LoggerFSapp,
     Loggeraircms,
     LoggerInflux,
+    LoggerBoscDeDades,
     LoggerCustom,
     LoggerCount
 };
@@ -72,6 +75,11 @@ static const char URL_FSAPP[] PROGMEM = "/data.php";
 
 static const char HOST_AIRCMS[] PROGMEM = "doiot.ru";
 static const char URL_AIRCMS[] PROGMEM = "/php/sensors.php?h=";
+
+static const char HOST_BOSCDEDADES[] PROGMEM = "boscdedades.cat";
+static const char URL_BOSCDEDADES[] PROGMEM = "/data.php";
+#define PORT_BOSCDEDADES 80
+
 // As of 2019/09 uses invalid certificates on ssl/port 443 and does not support Maximum Fragment Length Negotiation (MFLN)
 // So we can not use SSL
 #define PORT_AIRCMS 80
@@ -85,8 +93,8 @@ static const char NTP_SERVER_1[] PROGMEM = "0.pool.ntp.org";
 static const char NTP_SERVER_2[] PROGMEM = "1.pool.ntp.org";
 
 // define own API
-static const char HOST_CUSTOM[] PROGMEM = "boscdedades.cat";
-static const char URL_CUSTOM[] PROGMEM = "/data.php";
+static const char HOST_CUSTOM[] PROGMEM = "192.168.234.1";
+static const char URL_CUSTOM[] PROGMEM = "";
 #define PORT_CUSTOM 80
 #define USER_CUSTOM ""
 #define PWD_CUSTOM ""
@@ -262,7 +270,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define PPD_API_PIN 5
 
 // SDS011, the more expensive version of the particle sensor
-#define SDS_READ 0
+#define SDS_READ 1
 #define SDS_API_PIN 1
 
 // PMS1003, PMS300, 3PMS5003, PMS6003, PMS7003
@@ -293,7 +301,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 #define BMP_API_PIN 3//3
 
 // BMP280/BME280, temperature, pressure (humidity on BME280)
-#define BMX280_READ 0 //0
+#define BMX280_READ 1 //0
 #define BMP280_API_PIN 3 //3
 #define BME280_API_PIN 11 //11
 
@@ -312,7 +320,7 @@ static const char MEASUREMENT_NAME_INFLUX[] PROGMEM = "feinstaub";
 // DNMS Noise Measurement
 #define DNMS_I2C_GPIO_SCL 2 // D4
 #define DNMS_I2C_GPIO_SDA 0 // D3
-#define DNMS_READ 1
+#define DNMS_READ 0
 #define DNMS_READ_Z 0
 #define DNMS_READ_SPECTRUM 0
 #define DNMS_READ_SPECTRUM_Z 0

@@ -96,7 +96,7 @@
   /*Tabs*/
   .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
   .tab { padding: 10px 18px; background: #222; border-radius: 12px; cursor: pointer; font-size: 0.9em; font-weight: 600; color: #aaa; }
-  .radio, .panel { display: none; }
+  input[type='radio'], .panel { display: none; }
   
   #r1:checked ~ .tabs > #tab1,
   #r2:checked ~ .tabs > #tab2,
@@ -110,7 +110,96 @@
   #r4:checked ~ .panels > #panel4,
   #r5:checked ~ .panels > #panel5 { display: block; }
   
+  /*PANELES*/
+  .panel a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;}
+  .panel a:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;}
+  .panel table {
+    width: 100%;
+    margin: 10px 0;
+    border-spacing: 0;}
+  .panel td {
+    padding: 8px 4px;
+    font-family: monospace;
+    color: #ccc;
+    vertical-align: middle;}
+  .panel input[type="checkbox"] {
+    accent-color: var(--accent); /* Hace que el "check" sea verde menta */
+    transform: scale(1.1); /* Los hace un pelín más grandes para facilitar el clic */
+    cursor: pointer;}
+  .panel label {
+    cursor: pointer;
+    margin-right: 15px;
+    display: inline-block;
+    line-height: 2; /* Separa un poco las líneas para que no se amontone el texto */}
+
   /*Footer*/
   .footer { margin-top: 30px; font-size: 0.85em; color: #888; text-align: center; border-top: 1px solid #222; padding-top: 20px; }
   .footer a { color: var(--accent); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
+  
+
+  /* Wifi list custom */
+#wifilist table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+#wifilist tr {
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  border-bottom: 1px solid #222;
+}
+
+#wifilist tr:hover {
+  background: var(--glass);
+  transform: scale(1.01);
+}
+
+#wifilist td {
+  padding: 12px;
+  color: #ccc;
+  font-family: monospace;
+}
+#wifilist td:first-child {
+  color: var(--accent);
+  font-weight: 600;
+}
+#wifilist a.wifi {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+#wifilist a.wifi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+#wlanpwd {
+  scroll-margin-top: 200vh;
+}
+
+#wifilist input[type="text"], 
+#wifilist input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 0.8rem;
+  border: 1px solid #333;
+  background: #050505;
+  color: #fff;
+  font-family: monospace;
+}
+
+#wifilist input:focus {
+  border-color: var(--accent);
+  outline: none;
+}

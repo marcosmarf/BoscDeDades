@@ -186,6 +186,7 @@ namespace cfg
 	bool send2sensemap = SEND2SENSEMAP;
 	bool send2fsapp = SEND2FSAPP;
 	bool send2aircms = SEND2AIRCMS;
+	bool send2boscdedades = SEND2BOSCDEDADES;
 	bool send2custom = SEND2CUSTOM;
 	bool send2influx = SEND2INFLUX;
 	bool send2csv = SEND2CSV;
@@ -1807,6 +1808,7 @@ static void webserver_config_send_body_get(String &page_content)
 	add_form_checkbox(Config_send2csv, FPSTR(WEB_CSV));
 	add_form_checkbox(Config_send2fsapp, FPSTR(WEB_FEINSTAUB_APP));
 	add_form_checkbox(Config_send2aircms, FPSTR(WEB_AIRCMS));
+	add_form_checkbox(Config_send2boscdedades, FPSTR(WEB_BOSCDEDADES));
 	add_form_checkbox(Config_send2sensemap, FPSTR(WEB_OPENSENSEMAP));
 	page_content += FPSTR(TABLE_TAG_OPEN);
 	add_form_input(page_content, Config_senseboxid, F("senseBox&nbsp;ID"), LEN_SENSEBOXID - 1);
@@ -1819,13 +1821,11 @@ static void webserver_config_send_body_get(String &page_content)
 	page_content += form_checkbox(Config_ssl_custom, FPSTR(WEB_HTTPS), false);
 	page_content += FPSTR(WEB_BRACE_BR);
 
-	server.sendContent(page_content);
+		server.sendContent(page_content);
 	page_content = FPSTR(TABLE_TAG_OPEN);
 	add_form_input(page_content, Config_host_custom, FPSTR(INTL_SERVER), LEN_HOST_CUSTOM - 1);
 	add_form_input(page_content, Config_url_custom, FPSTR(INTL_PATH), LEN_URL_CUSTOM - 1);
 	add_form_input(page_content, Config_port_custom, FPSTR(INTL_PORT), MAX_PORT_DIGITS);
-	add_form_input(page_content, Config_user_custom, FPSTR(INTL_USER), LEN_USER_CUSTOM - 1);
-	add_form_input(page_content, Config_pwd_custom, FPSTR(INTL_PASSWORD), LEN_CFG_PASSWORD - 1);
 	page_content += FPSTR(TABLE_TAG_CLOSE_BR);
 
 	page_content += FPSTR(BR_TAG);
