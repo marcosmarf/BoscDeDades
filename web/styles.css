@@ -826,6 +826,15 @@ ul ul li {
     justify-content: center;
     align-items: center;
 }
+
+.institutional-logo-pair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    flex-wrap: wrap;
+}
+
 .institutional-logo-cell img {
     width: auto;
     height: auto;
@@ -839,6 +848,7 @@ ul ul li {
 .institutional-logo-cell-bottom { grid-column: 1 / -1; min-height: 120px; }
 .institutional-logo-cell-top img { height: 120px;}
 .institutional-logo-cell-bottom img {height: 120px;}
+.logo-diba { height: 92px !important; }
 
 
 
@@ -947,5 +957,13 @@ ul ul li {
     .institutional-logo-cell-bottom img {
         max-height: 80px;
         max-width: 90%;
+    }
+
+    .institutional-logo-pair {
+        gap: 1.4rem;
+    }
+
+    .logo-diba {
+        height: 74px !important;
     }
 }

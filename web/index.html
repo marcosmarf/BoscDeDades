@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://img.youtube.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
     <title>Bosc de Dades</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -73,7 +74,7 @@
             <a href="#" class="cta-button" id="dwn-title">Descàrregues</a>
         </div>
         <div class="dwn-btns-container">
-            <a href="#" class="dwn-btn-modern is-striked-red" target="_blank" id="dwn-manual">
+            <a href="#" class="dwn-btn-modern is-striked-red" target="_blank" rel="noopener noreferrer" id="dwn-manual">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
                 <span>Manual d'Usuari</span>
             </a>
@@ -81,7 +82,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
                 <span>Codi Font</span>
             </a>
-            <a href="#" class="dwn-btn-modern is-striked-red" target="_blank" id="dwn-data">
+            <a href="#" class="dwn-btn-modern is-striked-red" target="_blank" rel="noopener noreferrer" id="dwn-data">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-download" aria-hidden="true" style="vertical-align:middle;"><path d="M12 13v8l-4-4"></path><path d="m12 21 4-4"></path><path d="M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"></path></svg>
                 <span>Dades Obertes</span>
             </a>
@@ -372,9 +373,12 @@
                     </a>
                 </div>
                 <div class="institutional-logo-cell institutional-logo-cell-top">
-                    <a href="https://www.mataro.cat/">
-                        <img src="assets/LogotipsInstitucionals/LogoAjuntamentMataro.png" alt="Ajuntament de Mataró">
-                    </a>
+                    <div class="institutional-logo-pair">
+                        <a href="https://www.mataro.cat/">
+                            <img src="assets/LogotipsInstitucionals/LogoAjuntamentMataro.png" alt="Ajuntament de Mataró">
+                        </a>
+                        <img src="assets/LogotipsInstitucionals/LogoDiBa-White.png" alt="Diputació de Barcelona" class="logo-diba">
+                    </div>
                 </div>
                 <div class="institutional-logo-cell institutional-logo-cell-bottom">
                     <a href="https://edint.es/">

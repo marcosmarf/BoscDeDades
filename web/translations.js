@@ -342,6 +342,13 @@
     }
 };
 
+const HTML_TRANSLATION_KEYS = new Set(['footer-title']);
+const HTML_TRANSLATION_KEY_PATTERN = /^phase[1-4]-(coords|meta|item\d(?:-[a-z])?)$/;
+
+function allowsHtmlTranslation(key) {
+    return HTML_TRANSLATION_KEYS.has(key) || HTML_TRANSLATION_KEY_PATTERN.test(key);
+}
+
 function t(key, fallback = '') {
     const lang = document.documentElement.lang || 'ca';
     const dict = translations[lang] || translations.ca || {};
@@ -365,8 +372,10 @@ function changeLanguage(lang) {
         if (element) {
             if (key.startsWith('tooltip-')) {
                 element.setAttribute('data-tooltip', currentDict[key]);
-            } else {
+            } else if (allowsHtmlTranslation(key)) {
                 element.innerHTML = currentDict[key];
+            } else {
+                element.textContent = currentDict[key];
             }
         }
     }
