@@ -1304,43 +1304,43 @@ static bool writeConfig()
 static void createLoggerConfigs()
 {
 #if defined(ESP8266)
-	auto new_session = []()
-	{ return new BearSSL::Session; };
+    auto new_session = []()
+    { return new BearSSL::Session; };
 #else
-	auto new_session = []()
-	{ return nullptr; };
+    auto new_session = []()
+    { return nullptr; };
 #endif
-	if (cfg::send2dusti)
-	{
-		loggerConfigs[LoggerSensorCommunity].destport = 80;
-		if (cfg::ssl_dusti)
-		{
-			loggerConfigs[LoggerSensorCommunity].destport = 443;
-			loggerConfigs[LoggerSensorCommunity].session = new_session();
-		}
-	}
-	loggerConfigs[LoggerMadavi].destport = PORT_MADAVI;
-	if (cfg::send2madavi && cfg::ssl_madavi)
-	{
-		loggerConfigs[LoggerMadavi].destport = 443;
-		loggerConfigs[LoggerMadavi].session = new_session();
-	}
-	loggerConfigs[LoggerSensemap].destport = PORT_SENSEMAP;
-	loggerConfigs[LoggerSensemap].session = new_session();
-	loggerConfigs[LoggerFSapp].destport = PORT_FSAPP;
-	loggerConfigs[Loggeraircms].destport = PORT_AIRCMS;
-	loggerConfigs[LoggerInflux].destport = cfg::port_influx;
-	if (cfg::send2influx && cfg::ssl_influx)
-	{
-		loggerConfigs[LoggerInflux].session = new_session();
-	}
-	loggerConfigs[LoggerCustom].destport = cfg::port_custom;
-	if (cfg::send2custom && (cfg::ssl_custom || (cfg::port_custom == 443)))
-	{
-		loggerConfigs[LoggerCustom].session = new_session();
-	}
+    if (cfg::send2dusti)
+    {
+        loggerConfigs[LoggerSensorCommunity].destport = 80;
+        if (cfg::ssl_dusti)
+        {
+            loggerConfigs[LoggerSensorCommunity].destport = 443;
+            loggerConfigs[LoggerSensorCommunity].session = new_session();
+        }
+    }
+    loggerConfigs[LoggerMadavi].destport = PORT_MADAVI;
+    if (cfg::send2madavi && cfg::ssl_madavi)
+    {
+        loggerConfigs[LoggerMadavi].destport = 443;
+        loggerConfigs[LoggerMadavi].session = new_session();
+    }
+    loggerConfigs[LoggerSensemap].destport = PORT_SENSEMAP;
+    loggerConfigs[LoggerSensemap].session = new_session();
+    loggerConfigs[LoggerFSapp].destport = PORT_FSAPP;
+    loggerConfigs[Loggeraircms].destport = PORT_AIRCMS;
+    loggerConfigs[LoggerInflux].destport = cfg::port_influx;
+    if (cfg::send2influx && cfg::ssl_influx)
+    {
+        loggerConfigs[LoggerInflux].session = new_session();
+    }
+    loggerConfigs[LoggerCustom].destport = cfg::port_custom;
+    if (cfg::send2custom && (cfg::ssl_custom || (cfg::port_custom == 443)))
+    {
+        loggerConfigs[LoggerCustom].session = new_session();
+    }
+    loggerConfigs[LoggerBoscDeDades].destport = PORT_BOSCDEDADES;
 }
-
 /*****************************************************************
  * dew point helper function                                     *
  *****************************************************************/
@@ -5828,6 +5828,17 @@ static unsigned long sendDataToOptionalApis(const String &data)
 		RESERVE_STRING(data_4_influxdb, LARGE_STR);
 		create_influxdb_string_from_data(data_4_influxdb, data);
 		sum_send_time += sendData(LoggerInflux, data_4_influxdb, 0, cfg::host_influx, cfg::url_influx);
+	}
+	if (cfg::send2boscdedades)
+	{
+		debug_outln_info(FPSTR(DBG_TXT_SENDING_TO), F("boscdedades.cat: "));
+    String data_to_send = data;
+    data_to_send.remove(0, 1);
+    String data_4_boscdedades(F("{\"esp8266id\": \""));
+    data_4_boscdedades += esp_chipid;
+    data_4_boscdedades += "\", ";
+    data_4_boscdedades += data_to_send;
+    sum_send_time += sendData(LoggerBoscDeDades, data, 0, HOST_BOSCDEDADES, URL_BOSCDEDADES);
 	}
 
 	if (cfg::send2custom)
