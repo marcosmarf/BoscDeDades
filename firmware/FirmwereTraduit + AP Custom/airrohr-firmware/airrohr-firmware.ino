@@ -5838,7 +5838,7 @@ static unsigned long sendDataToOptionalApis(const String &data)
     data_4_boscdedades += esp_chipid;
     data_4_boscdedades += "\", ";
     data_4_boscdedades += data_to_send;
-    sum_send_time += sendData(LoggerBoscDeDades, data, 0, HOST_BOSCDEDADES, URL_BOSCDEDADES);
+    sum_send_time += sendData(LoggerBoscDeDades, data_4_boscdedades, 0, HOST_BOSCDEDADES, URL_BOSCDEDADES);
 	}
 
 	if (cfg::send2custom)
