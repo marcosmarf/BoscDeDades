@@ -314,7 +314,8 @@
         const cards = Array.from(track.children);
         if (!cards.length) return;
 
-        let currentIndex = 0;
+        const initialIndex = Math.min(1, cards.length - 1);
+        let currentIndex = initialIndex;
         let startX = 0;
         let isDragging = false;
         let dragDelta = 0;
@@ -322,7 +323,7 @@
         // Build dots
         cards.forEach((_, i) => {
             const dot = document.createElement('button');
-            dot.className = 'sessions-dot' + (i === 0 ? ' is-active' : '');
+            dot.className = 'sessions-dot' + (i === initialIndex ? ' is-active' : '');
             dot.setAttribute('aria-label', 'Sessió ' + (i + 1));
             dot.addEventListener('click', () => goTo(i));
             dotsContainer && dotsContainer.appendChild(dot);
@@ -377,12 +378,38 @@
             else if (delta > 40) goTo(currentIndex - 1);
         });
 
-        updateArrows();
+        goTo(initialIndex);
     }
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initSessionsCarousel, { once: true });
     } else {
         initSessionsCarousel();
+    }
+})();
+
+// ROADMAP ACCORDION — només una fase oberta alhora
+(function() {
+    function initRoadmapAccordion() {
+        const accordion = document.getElementById('roadmap');
+        if (!accordion) return;
+
+        const phases = accordion.querySelectorAll('.roadmap-phase');
+        if (!phases.length) return;
+
+        phases.forEach((phase) => {
+            phase.addEventListener('toggle', () => {
+                if (!phase.open) return;
+                phases.forEach((other) => {
+                    if (other !== phase) other.open = false;
+                });
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRoadmapAccordion, { once: true });
+    } else {
+        initRoadmapAccordion();
     }
 })();
