@@ -300,3 +300,89 @@
         }
     });
 })();
+
+// SESSIONS CAROUSEL
+(function () {
+    function initSessionsCarousel() {
+        const track = document.getElementById('sessions-track');
+        const wrapper = document.querySelector('.sessions-scroll-wrapper');
+        const prevBtn = document.getElementById('sessions-prev');
+        const nextBtn = document.getElementById('sessions-next');
+        const dotsContainer = document.getElementById('sessions-dots');
+        if (!track || !wrapper) return;
+
+        const cards = Array.from(track.children);
+        if (!cards.length) return;
+
+        let currentIndex = 0;
+        let startX = 0;
+        let isDragging = false;
+        let dragDelta = 0;
+
+        // Build dots
+        cards.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'sessions-dot' + (i === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Sessió ' + (i + 1));
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer && dotsContainer.appendChild(dot);
+        });
+
+        function getCardWidth() {
+            return cards[0] ? cards[0].offsetWidth + parseInt(getComputedStyle(track).gap || '24') : 300;
+        }
+
+        function updateDots() {
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('.sessions-dot') : [];
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === currentIndex));
+        }
+
+        function updateArrows() {
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex >= cards.length - 1;
+        }
+
+        function goTo(index) {
+            currentIndex = Math.max(0, Math.min(index, cards.length - 1));
+            const offset = currentIndex * getCardWidth();
+            track.style.transform = 'translateX(-' + offset + 'px)';
+            updateDots();
+            updateArrows();
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+        if (nextBtn) nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+
+        // Drag / swipe
+        wrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            dragDelta = 0;
+        });
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            dragDelta = e.clientX - startX;
+        });
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (dragDelta < -50) goTo(currentIndex + 1);
+            else if (dragDelta > 50) goTo(currentIndex - 1);
+        });
+
+        wrapper.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        wrapper.addEventListener('touchend', (e) => {
+            const delta = e.changedTouches[0].clientX - startX;
+            if (delta < -40) goTo(currentIndex + 1);
+            else if (delta > 40) goTo(currentIndex - 1);
+        });
+
+        updateArrows();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSessionsCarousel, { once: true });
+    } else {
+        initSessionsCarousel();
+    }
+})();
