@@ -124,6 +124,12 @@
         "s2-desc": "Sessió de presentació del projecte de ciència ciutadana Bosc De Dades oberta al públic sense inscripció prèvia.",
         "s2-location": "📍 Biblioteca Pompeu Fabra, Mataró",
         "s2-time": "🕐 17:30 h",
+        "s3-badge": "Pròximament",
+        "s3-date": "📅 3 de juny de 2026",
+        "s3-title": "Presentació del projecte",
+        "s3-desc": "Sessió de presentació del projecte de ciència ciutadana Bosc De Dades. <strong>Només per a docents</strong>.",
+        "s3-location": "📍 CRP (Serveis educatius), c/ Onofre Arnau 32, Mataró",
+        "s3-time": "🕐 8:00 h",
 
         "footer-title": "Vols plantar un <span style='color: #7FE5B8;'>sensor?</span>",
         "footer-contact-desc": "Si estàs interessat/da a participar en el projecte i/o tens algun dubte al respecte, no dubtis a escriure'ns al següent correu de contacte.",
@@ -264,6 +270,12 @@
         "s2-desc": "Sesión de presentación del proyecto de ciencia ciudadana Bosc De Dades abierta al público sin inscripción previa.",
         "s2-location": "📍 Biblioteca Pompeu Fabra, Mataró",
         "s2-time": "🕐 17:30 h",
+        "s3-badge": "Próximamente",
+        "s3-date": "📅 3 de junio de 2026",
+        "s3-title": "Presentación del proyecto",
+        "s3-desc": "Sesión de presentación del proyecto de ciencia ciudadana Bosc De Dades. <strong>Solo para docentes</strong>.",
+        "s3-location": "📍 CRP (Servicios educativos), c/ Onofre Arnau 32, Mataró",
+        "s3-time": "🕐 8:00 h",
 
         "footer-title": "¿Quieres plantar un <span style='color: #7FE5B8;'>sensor?</span>",
         "footer-contact-desc": "Si estás interesado/a en participar en el proyecto y/o tienes alguna duda al respecto, no dudes en escribirnos al siguiente correo de contacto.",
@@ -403,6 +415,12 @@
         "s2-desc": "Presentation session of the Bosc De Dades citizen science project, open to the public with no prior registration.",
         "s2-location": "📍 Biblioteca Pompeu Fabra, Mataró",
         "s2-time": "🕐 17:30",
+        "s3-badge": "Upcoming",
+        "s3-date": "📅 3 June 2026",
+        "s3-title": "Project presentation",
+        "s3-desc": "Presentation session of the Bosc De Dades citizen science project. <strong>Teachers only</strong>.",
+        "s3-location": "📍 CRP (Educational Services), 32 Onofre Arnau St., Mataró",
+        "s3-time": "🕐 8:00",
 
         "footer-title": "Do you want to plant a <span style='color: #7FE5B8;'>sensor?</span>",
         "footer-contact-desc": "If you are interested in taking part in the project and/or have any questions, feel free to write to us at the contact email below.",
@@ -421,7 +439,7 @@
 };
 
 const HTML_TRANSLATION_KEYS = new Set(['footer-title']);
-const HTML_TRANSLATION_KEY_PATTERN = /^phase[1-4]-(coords|meta|item\d(?:-[a-z])?)$/;
+const HTML_TRANSLATION_KEY_PATTERN = /^(?:phase[1-4]-(?:coords|meta|item\d(?:-[a-z])?)|s\d+-desc)$/;
 
 function allowsHtmlTranslation(key) {
     return HTML_TRANSLATION_KEYS.has(key) || HTML_TRANSLATION_KEY_PATTERN.test(key);

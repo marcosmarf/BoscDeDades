@@ -1179,6 +1179,11 @@ ul ul li {
     max-width: 100%;
 }
 
+.session-card-desc strong {
+    color: var(--btn-color, #7fe5b8);
+    font-weight: 700;
+}
+
 .session-card-footer {
     display: flex;
     flex-direction: column;
