@@ -1,8 +1,5 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'boscdedades_sensors');
-define('DB_USER', 'boscdedades_user');
-define('DB_PASS', '');
+
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
