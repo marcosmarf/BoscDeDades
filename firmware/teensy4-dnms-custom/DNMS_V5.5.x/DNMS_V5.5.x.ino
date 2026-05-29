@@ -38,8 +38,9 @@ Memory Usage on Teensy 4.0:
 #include <math.h>
 #include <Audio.h>
 #include <dnms_audio_lib.h>
-#include <i2c_driver.h>
-#include <i2c_driver_wire.h>
+//#include <i2c_driver.h>
+//#include <i2c_driver_wire.h>
+#include <Wire.h>
 
 #include "./DNMS_def.h"
 #include "./FIR_decimation_filter.h"

@@ -6021,7 +6021,7 @@ void loop(void)
 		UPDATE_MIN_MAX(min_micro, max_micro, diff_micro);
 	}
 	last_micro = act_micro;
-
+	Serial.println(act_micro);
 	if (cfg::sps30_read && (!sps30_init_failed))
 	{
 		if ((msSince(starttime) - SPS30_read_timer) > SPS30_WAITING_AFTER_LAST_READ)
