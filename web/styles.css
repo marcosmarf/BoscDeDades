@@ -191,7 +191,7 @@ body {
 }
 
 /* --- 4. HEADER Y NAV --- */
-header {
+.site-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1432,7 +1432,7 @@ ul ul li {
     .grid-row { grid-template-columns: 1fr; }
     .scroll-col { border-left: none; border-top: 1px solid var(--line-color); }
     .sticky-col { position: relative; top: 0; padding: 2rem; }
-    header { padding: 1rem; }
+    .site-header { padding: 1rem; }
     nav { display: none; } /* Simplificado para el ejemplo */
     .info-block-content {
         box-sizing: border-box;
