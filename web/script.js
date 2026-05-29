@@ -236,20 +236,18 @@
     }
 })();
 
-// Manejo del formulari de contacte
+// Formulari de contacte: mailto al client de correu; botó de contacte copia l'adreça
 (function() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
+    const CONTACT_EMAIL = 'boscdedades@tecnocampus.cat';
+    const LABEL_FADE_MS = 400;
+    const COPIED_HOLD_MS = 2500;
 
-    const nameInput = document.getElementById('contact-name');
-    const emailInput = document.getElementById('contact-email');
-    const messageInput = document.getElementById('contact-message');
     const feedbackEl = document.getElementById('contact-feedback');
 
     function setFeedback(message, type) {
         if (!feedbackEl) return;
         feedbackEl.textContent = message;
-        feedbackEl.style.color = type === 'error' ? '#e74c3c' : '#2ecc71';
+        feedbackEl.style.color = type === 'error' ? '#e74c3c' : type ? '#2ecc71' : '';
     }
 
     function tr(key, fallback) {
@@ -257,48 +255,101 @@
         return fallback;
     }
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    function wait(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
 
-        const name = nameInput ? nameInput.value.trim() : '';
-        const email = emailInput ? emailInput.value.trim() : '';
-        const message = messageInput ? messageInput.value.trim() : '';
+    function buildMailtoUrl(name, message) {
+        const subject = tr('contact-mailto-subject', 'Sol·licitud – Bosc de Dades');
+        const body = [
+            tr('contact-mailto-intro', 'Hola,'),
+            '',
+            message,
+            '',
+            '---',
+            tr('contact-mailto-from-label', 'Nom:') + ' ' + name
+        ].join('\n');
+        return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
-        if (!name || !email || !message) {
-            setFeedback(tr('msg-contact-error-required', 'Please fill in all fields.'), 'error');
-            return;
-        }
+    function openMailto(url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.rel = 'noopener';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    }
 
-        // Validació senzilla del correu
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            setFeedback(tr('msg-contact-error-email', 'Please enter a valid email address.'), 'error');
-            return;
-        }
+    function setEmailLabelVisible(labelEl, visible) {
+        if (!labelEl) return;
+        labelEl.classList.toggle('is-visible', visible);
+        labelEl.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    }
 
-        setFeedback(tr('msg-contact-sending', 'Sending…'), 'success');
+    async function swapEmailButtonLabel(showCopied) {
+        const defaultLabel = document.getElementById('contact-email-btn-default');
+        const copiedLabel = document.getElementById('contact-email-btn-copied');
+        const from = showCopied ? defaultLabel : copiedLabel;
+        const to = showCopied ? copiedLabel : defaultLabel;
 
-        try {
-            const response = await fetch('https://formspree.io/f/xqewpqoq', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, message })
-            });
+        setEmailLabelVisible(from, false);
+        await wait(LABEL_FADE_MS);
+        setEmailLabelVisible(to, true);
+        await wait(LABEL_FADE_MS);
+    }
 
-            if (!response.ok) {
-                throw new Error('Error en la resposta del servidor');
+    async function flashCopiedOnButton() {
+        const copyBtn = document.getElementById('contact-copy-email');
+        if (!copyBtn || copyBtn.disabled) return;
+
+        copyBtn.disabled = true;
+        await swapEmailButtonLabel(true);
+        await wait(COPIED_HOLD_MS);
+        await swapEmailButtonLabel(false);
+        copyBtn.disabled = false;
+    }
+
+    const form = document.getElementById('contact-form');
+    if (form) {
+        const nameInput = document.getElementById('contact-name');
+        const messageInput = document.getElementById('contact-message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = nameInput ? nameInput.value.trim() : '';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            if (!name || !message) {
+                setFeedback(tr('msg-contact-error-required', 'Please fill in all fields.'), 'error');
+                return;
             }
 
-            setFeedback(tr('msg-contact-feedback', 'Thank you! We have received your request.'), 'success');
-            form.reset();
-        } catch (error) {
-            console.error('Error enviant el formulari de contacte:', error);
-            setFeedback(tr('msg-contact-error', 'There has been a problem sending the form. Please try again later.'), 'error');
-        }
-    });
+            openMailto(buildMailtoUrl(name, message));
+            setFeedback(tr('msg-contact-mailto-opened', 'S\'ha obert el teu client de correu. Revisa el missatge i envia\'l.'), 'success');
+        });
+    }
+
+    const copyBtn = document.getElementById('contact-copy-email');
+    if (copyBtn) {
+        let copyAnimating = false;
+
+        copyBtn.addEventListener('click', async () => {
+            if (copyAnimating) return;
+
+            try {
+                await navigator.clipboard.writeText(CONTACT_EMAIL);
+                setFeedback('', null);
+                copyAnimating = true;
+                await flashCopiedOnButton();
+            } catch {
+                setFeedback(tr('msg-contact-copy-error', 'No s\'ha pogut copiar. Pots escriure manualment: ') + CONTACT_EMAIL, 'error');
+            } finally {
+                copyAnimating = false;
+            }
+        });
+    }
 })();
 
 // SESSIONS CAROUSEL

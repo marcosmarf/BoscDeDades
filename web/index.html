@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://img.youtube.com https://maps.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://img.youtube.com https://maps.googleapis.com https://maps.gstatic.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; form-action 'self' mailto:; navigate-to 'self' mailto:; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
     <title>Bosc de Dades</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -437,54 +437,38 @@
                 <span id="footer-title">Vols plantar un <span style="color: #7FE5B8;">sensor?</span></span>
             </h2>
 
-            <p class="footer-contact-desc" id="footer-contact-desc">Si estàs interessat/da a participar en el projecte i/o tens algun dubte al respecte, no dubtis a escriure'ns al següent correu de contacte.</p>
-            <h3><span id="contact-heading">Contacte:</span> <a href="mailto:boscdedades@tecnocampus.cat">boscdedades@tecnocampus.cat</a></h3>
-<!--
-                <form id="contact-form" class="contact-form" novalidate style="max-width: 480px; margin: 0 auto 2rem auto; text-align: left;">
-                <div class="form-row" style="margin-bottom: 0.75rem;">
-                    <label id="contact-name-label" for="contact-name" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Nom i cognoms</label>
-                    <input
-                        type="text"
-                        id="contact-name"
-                        name="name"
-                        required
-                        autocomplete="name"
-                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 999px; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; outline: none;"
-                    >
+            <p class="footer-contact-desc" id="footer-contact-desc">Si estàs interessat/da a participar en el projecte i/o tens algun dubte al respecte, omple el formulari i t'obrirem el teu client de correu amb el missatge preparat.</p>
+
+            <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-row">
+                    <label id="contact-name-label" for="contact-name">Nom i cognoms</label>
+                    <input type="text" id="contact-name" name="name" required autocomplete="name">
                 </div>
 
-                <div class="form-row" style="margin-bottom: 0.75rem;">
-                    <label id="contact-email-label" for="contact-email" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Correu electrònic</label>
-                    <input
-                        type="email"
-                        id="contact-email"
-                        name="email"
-                        required
-                        autocomplete="email"
-                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 999px; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; outline: none;"
-                    >
+                <div class="form-row">
+                    <label id="contact-message-label" for="contact-message">Missatge</label>
+                    <textarea id="contact-message" name="message" rows="4" required placeholder="Explica'ns on voldries plantar el sensor, qui el faria servir, etc."></textarea>
                 </div>
 
-                <div class="form-row" style="margin-bottom: 1rem;">
-                    <label id="contact-message-label" for="contact-message" style="display: block; margin-bottom: 0.25rem; font-size: 0.9rem; opacity: 0.8;">Missatge</label>
-                    <textarea
-                        id="contact-message"
-                        name="message"
-                        rows="4"
-                        required
-                        style="width: 100%; padding: 0.6rem 0.8rem; border-radius: 1rem; border: 1px solid rgba(186,233,244,0.4); background: rgba(7,16,23,0.8); color: #f5f5f5; font-family: inherit; resize: vertical; outline: none;"
-                        placeholder="Explica'ns on voldries plantar el sensor, qui el faria servir, etc."
-                    ></textarea>
-                </div>
-
-                <button type="submit" class="dwn-btn" style="display: inline-flex; align-items: center; gap: 0.7em; margin-bottom: 0.25rem; text-decoration: none; box-shadow: 0 2px 12px rgba(127,229,184,0.08); border: none; cursor: pointer;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3bbf6a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
-                    <span id="contact-submit-label" style="text-decoration: none;">Enviar sol·licitud</span>
+                <button type="submit" class="contact-submit-btn dwn-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect><polyline points="3 7 12 13 21 7"></polyline></svg>
+                    <span id="contact-submit-label">Enviar sol·licitud</span>
                 </button>
 
-                <p id="contact-feedback" class="contact-feedback" aria-live="polite" style="min-height: 1.2em; font-size: 0.85rem; margin: 0;"></p>
             </form>
-        -->
+
+            <button type="button" id="contact-copy-email" class="contact-email-btn" aria-label="Copiar correu de contacte">
+                <span class="contact-email-btn-inner">
+                    <span id="contact-email-btn-default" class="contact-email-btn-label is-visible">
+                        <span id="contact-heading">Contacte:</span>
+                        <span class="contact-email-address">boscdedades@tecnocampus.cat</span>
+                    </span>
+                    <span id="contact-email-btn-copied" class="contact-email-btn-label" aria-hidden="true">
+                        <span id="contact-copied-label">Correu copiat</span>
+                    </span>
+                </span>
+            </button>
+            <p id="contact-feedback" class="contact-feedback" aria-live="polite"></p>
             <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
                 <img src="assets/Bosc.png" alt="Bosc de Dades" style="max-width: 80%; height: auto; width: 100%; object-fit: contain; display: block; margin: 0 auto;">
             </div>

@@ -132,19 +132,21 @@
         "s3-time": "🕐 8:00 h",
 
         "footer-title": "Vols plantar un <span style='color: #7FE5B8;'>sensor?</span>",
-        "footer-contact-desc": "Si estàs interessat/da a participar en el projecte i/o tens algun dubte al respecte, no dubtis a escriure'ns al següent correu de contacte.",
+        "footer-contact-desc": "Si estàs interessat/da a participar en el projecte i/o tens algun dubte al respecte, omple el formulari i t'obrirem el teu client de correu amb el missatge preparat.",
         "contact-heading": "Contacte:",
         "contact-name-label": "Nom i cognoms",
-        "contact-email-label": "Correu electrònic",
         "contact-message-label": "Missatge",
         "contact-message-placeholder": "Explica'ns on voldries plantar el sensor, qui el faria servir, etc.",
         "contact-submit-label": "Enviar sol·licitud",
+        "contact-mailto-subject": "Sol·licitud – Bosc de Dades",
+        "contact-mailto-intro": "Hola,",
+        "contact-mailto-from-label": "Nom:",
+        "contact-copied-label": "Correu copiat",
 
-        "msg-contact-sending": "Enviant el formulari…",
-        "msg-contact-feedback": "Gràcies! Hem rebut la teva sol·licitud.",
-        "msg-contact-error-required": "Si us plau, omple tots els camps.",
-        "msg-contact-error-email": "Introdueix un correu electrònic vàlid.",
-        "msg-contact-error": "Hi ha hagut un problema en enviar el formulari. Torna-ho a provar més tard."
+        "msg-contact-mailto-opened": "S'ha obert el teu client de correu. Revisa el missatge i envia'l.",
+        "msg-contact-copy-success": "Correu copiat",
+        "msg-contact-copy-error": "No s'ha pogut copiar. Pots escriure manualment:",
+        "msg-contact-error-required": "Si us plau, omple el nom i el missatge."
     },
     "es": {
         "nav-manifest": "Manifiesto",
@@ -278,18 +280,21 @@
         "s3-time": "🕐 8:00 h",
 
         "footer-title": "¿Quieres plantar un <span style='color: #7FE5B8;'>sensor?</span>",
-        "footer-contact-desc": "Si estás interesado/a en participar en el proyecto y/o tienes alguna duda al respecto, no dudes en escribirnos al siguiente correo de contacto.",
+        "footer-contact-desc": "Si estás interesado/a en participar en el proyecto y/o tienes alguna duda al respecto, rellena el formulario y abriremos tu cliente de correo con el mensaje preparado.",
         "contact-heading": "Contacto:",
         "contact-name-label": "Nombre y apellidos",
-        "contact-email-label": "Correo electrónico",
         "contact-message-label": "Mensaje",
         "contact-message-placeholder": "Cuéntanos dónde te gustaría plantar el sensor, quién lo usaría, etc.",
         "contact-submit-label": "Enviar solicitud",
-        "msg-contact-sending": "Enviando el formulario…",
-        "msg-contact-feedback": "¡Gracias! Hemos recibido tu solicitud.",
-        "msg-contact-error-required": "Por favor, rellena todos los campos.",
-        "msg-contact-error-email": "Introduce un correo electrónico válido.",
-        "msg-contact-error": "Ha habido un problema al enviar el formulario. Inténtalo de nuevo más tarde."
+        "contact-mailto-subject": "Solicitud – Bosc de Dades",
+        "contact-mailto-intro": "Hola,",
+        "contact-mailto-from-label": "Nombre:",
+        "contact-copied-label": "Correo copiado",
+
+        "msg-contact-mailto-opened": "Se ha abierto tu cliente de correo. Revisa el mensaje y envíalo.",
+        "msg-contact-copy-success": "Correo copiado",
+        "msg-contact-copy-error": "No se ha podido copiar. Puedes escribir manualmente:",
+        "msg-contact-error-required": "Por favor, rellena el nombre y el mensaje."
     },
     "en": {
         "nav-manifest": "Manifesto",
@@ -423,18 +428,21 @@
         "s3-time": "🕐 8:00",
 
         "footer-title": "Do you want to plant a <span style='color: #7FE5B8;'>sensor?</span>",
-        "footer-contact-desc": "If you are interested in taking part in the project and/or have any questions, feel free to write to us at the contact email below.",
+        "footer-contact-desc": "If you are interested in taking part in the project and/or have any questions, fill in the form and we will open your email client with a ready-made message.",
         "contact-heading": "Contact:",
         "contact-name-label": "Name and surname",
-        "contact-email-label": "Email",
         "contact-message-label": "Message",
         "contact-message-placeholder": "Tell us where you would like to plant the sensor, who would use it, etc.",
         "contact-submit-label": "Send request",
-        "msg-contact-sending": "Sending…",
-        "msg-contact-feedback": "Thank you! We have received your request.",
-        "msg-contact-error-required": "Please fill in all fields.",
-        "msg-contact-error-email": "Please enter a valid email address.",
-        "msg-contact-error": "There has been a problem sending the form. Please try again later."
+        "contact-mailto-subject": "Request – Bosc de Dades",
+        "contact-mailto-intro": "Hello,",
+        "contact-mailto-from-label": "Name:",
+        "contact-copied-label": "Email copied",
+
+        "msg-contact-mailto-opened": "Your email client has opened. Review the message and send it.",
+        "msg-contact-copy-success": "Email copied",
+        "msg-contact-copy-error": "Could not copy. You can type it manually:",
+        "msg-contact-error-required": "Please fill in your name and message."
     }
 };
 
