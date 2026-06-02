@@ -1221,17 +1221,14 @@ ul ul li {
 }
 
 .session-card--past {
-    opacity: 0.75;
+    opacity: 0.5;
+    filter: grayscale(0.35) brightness(0.65);
 }
 
-.session-card--past .session-date,
-.session-card--past .session-card-title,
-.session-card--past .session-card-desc,
-.session-card--past .session-location,
-.session-card--past .session-time {
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-    text-decoration-color: rgba(200, 200, 200, 0.75);
+.session-card--past:hover {
+    transform: none;
+    border-color: rgba(127, 229, 184, 0.3);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
 }
 
 .session-card-media {
