@@ -242,7 +242,6 @@
     if (!form) return;
 
     const nameInput = document.getElementById('contact-name');
-    const emailInput = document.getElementById('contact-email');
     const messageInput = document.getElementById('contact-message');
     const feedbackEl = document.getElementById('contact-feedback');
 
@@ -257,47 +256,35 @@
         return fallback;
     }
 
-    form.addEventListener('submit', async (event) => {
+    function openMailto(url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.rel = 'noopener';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    }
+
+    form.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const name = nameInput ? nameInput.value.trim() : '';
-        const email = emailInput ? emailInput.value.trim() : '';
         const message = messageInput ? messageInput.value.trim() : '';
 
-        if (!name || !email || !message) {
-            setFeedback(tr('msg-contact-error-required', 'Please fill in all fields.'), 'error');
+        if (!name || !message) {
+            setFeedback(tr('msg-contact-error-required', 'Please fill in your name and message.'), 'error');
             return;
         }
 
-        // Validació senzilla del correu
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            setFeedback(tr('msg-contact-error-email', 'Please enter a valid email address.'), 'error');
-            return;
-        }
+        const subject = tr('contact-mailto-subject', 'Request - Bosc de Dades');
+        const intro = tr('contact-mailto-intro', 'Hello,');
+        const fromLabel = tr('contact-mailto-from-label', 'Name:');
+        const body = [intro, '', message, '', '---', `${fromLabel} ${name}`].join('\n');
+        const mailtoUrl = `mailto:boscdedades@tecnocampus.cat?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-        setFeedback(tr('msg-contact-sending', 'Sending…'), 'success');
-
-        try {
-            const response = await fetch('https://formspree.io/f/xqewpqoq', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, message })
-            });
-
-            if (!response.ok) {
-                throw new Error('Error en la resposta del servidor');
-            }
-
-            setFeedback(tr('msg-contact-feedback', 'Thank you! We have received your request.'), 'success');
-            form.reset();
-        } catch (error) {
-            console.error('Error enviant el formulari de contacte:', error);
-            setFeedback(tr('msg-contact-error', 'There has been a problem sending the form. Please try again later.'), 'error');
-        }
+        openMailto(mailtoUrl);
+        setFeedback(tr('msg-contact-mailto-opened', "Your email client has opened. Review the message and send it."), 'success');
+        form.reset();
     });
 })();
 
