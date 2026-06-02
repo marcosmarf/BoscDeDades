@@ -1220,6 +1220,20 @@ ul ul li {
     transform: translateY(-3px);
 }
 
+.session-card--past {
+    opacity: 0.75;
+}
+
+.session-card--past .session-date,
+.session-card--past .session-card-title,
+.session-card--past .session-card-desc,
+.session-card--past .session-location,
+.session-card--past .session-time {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(200, 200, 200, 0.75);
+}
+
 .session-card-media {
     width: 100%;
     height: 180px;
