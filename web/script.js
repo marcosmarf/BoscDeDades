@@ -301,7 +301,7 @@
         const cards = Array.from(track.children);
         if (!cards.length) return;
 
-        const initialIndex = Math.min(4, cards.length - 1);
+        const initialIndex = Math.min(5, cards.length - 1);
         let currentIndex = initialIndex;
         let startX = 0;
         let isDragging = false;
