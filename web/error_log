@@ -1,6 +1,0 @@
-[14-May-2026 10:06:01 UTC] BoscDeDades Cron Error: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'boscdedades_sensors.sensor_data.gps_lat' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
-[14-May-2026 10:07:02 UTC] BoscDeDades Cron Error: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'boscdedades_sensors.sensor_data.gps_lat' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
-[14-May-2026 10:08:01 UTC] BoscDeDades Cron Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'where clause'
-[14-May-2026 10:09:01 UTC] BoscDeDades Cron Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'where clause'
-[14-May-2026 10:10:02 UTC] BoscDeDades Cron Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'where clause'
-[14-May-2026 10:11:01 UTC] BoscDeDades Cron Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'where clause'
