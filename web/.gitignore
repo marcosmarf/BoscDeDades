@@ -1,1 +1,7 @@
 /.vs/
+
+# PHP del servidor (credenciales y lógica de backend en config.php local)
+*.php
+
+# Logs del servidor
+error_log
