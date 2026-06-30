@@ -23,3 +23,17 @@ Nuestro equipo de 4 coordinadores ha integrado estas tecnologías para crear un 
 ### 🌟 Origen del Proyecto
 Este "fork" específico se ha desarrollado para mejorar las siguientes características del proyecto original:
 - Soportar la comunicación I2C extendida (P82B715PN) y configuraciones de hardware modulares.
+
+### 📁 Estructura del proyecto
+En la carpeta "Firmware" encontrarás tres carpetas:
+- La "FirmwareTraduit + AP Custom", que es el firmware final precargado en los sensores medioambientales de BoscDeDades.
+- La "FirmwareTraduit+ESP8266-SensorComunity", que es el firmware original de Sensor.Community con la traducción al catalán.
+- La "Teensy4-dnms-custom", que es el firmware original del sensor de ruido con las modificaciones que hemos incluido para aligerar el código y mejorar la eficiencia.
+
+Dentro de estas carpetas puedes encontrar las versiones compiladas y el código fuente de cada una.
+
+En la carpeta "Hardware" encontrarás las versiones de las PCB que usamos de AirRohr y del DNMS.
+
+En la carpeta "web" encontrarás el código fuente de la web de Bosc de Dades y del servidor provisional de recepción de datos. En la subcarpeta "web/assets/educational-kit" puedes encontrar las unidades didácticas que se utilizan en escuelas e institutos.
+
+En el archivo "LlistaMaterials.md" encontrarás un listado de los materiales que se han utilizado, descripciones y enlaces donde se pueden encontrar.
