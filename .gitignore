@@ -1,2 +1,6 @@
-# Backend del servidor (PHP, credenciales, logs)
-server/
+# Backend del servidor (credenciales, logs, datos en runtime)
+server/*
+!server/config.example.php
+server/config.php
+
+research/
