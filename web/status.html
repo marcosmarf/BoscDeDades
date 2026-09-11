@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <title>Estat de la Xarxa · Bosc de Dades</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="status.css">
+</head>
+<body>
+    <script src="status.js" defer></script>
+
+    <div class="wrapper">
+        <header class="site-header">
+            <a class="logo" href="index.html" id="nav-logo">BOSC DE DADES</a>
+            <nav>
+                <a href="index.html">Inici</a>
+                <a href="status.html" aria-current="page">Estat de la Xarxa</a>
+            </nav>
+        </header>
+
+        <section class="status-section">
+            <h1 class="status-title">Estat de la Xarxa de Sensors</h1>
+            <p class="status-subtitle">
+                Llistat de totes les places que han enviat dades alguna vegada,
+                amb el moment de l'última transmissió i el seu estat actual.
+            </p>
+
+            <div class="status-legend" aria-hidden="false">
+                <span class="status-legend-item">
+                    <span class="status-dot status-dot--activa"></span>
+                    Activa · rebent dades
+                </span>
+                <span class="status-legend-item">
+                    <span class="status-dot status-dot--sense_dades"></span>
+                    Sense dades · &lt; 1 mes sense rebre
+                </span>
+                <span class="status-legend-item">
+                    <span class="status-dot status-dot--inactiva"></span>
+                    Inactiva · &gt; 1 mes sense transmetre
+                </span>
+            </div>
+
+            <div class="status-toolbar">
+                <div class="status-search-wrap">
+                    <input
+                        type="search"
+                        id="status-search"
+                        class="status-search"
+                        placeholder="Cerca per ID de placa, sensor o MAC…"
+                        aria-label="Cerca placa"
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="status-toolbar-right">
+                    <span id="status-count" class="status-count"></span>
+                    <button id="status-refresh" type="button" class="status-refresh-btn">Actualitza</button>
+                </div>
+            </div>
+
+            <div class="status-table-wrapper">
+                <table id="status-table" class="status-table">
+                    <thead>
+                        <tr>
+                            <th data-key="board_id">ID Placa</th>
+                            <th data-key="sensor_id">Sensor ID</th>
+                            <th data-key="mac_id">MAC</th>
+                            <th data-key="sw_version">Firmware</th>
+                            <th data-key="total_readings">Lectures</th>
+                            <th data-key="last_seen">Última transmissió</th>
+                            <th data-key="status">Estat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="status-tbody">
+                        <tr>
+                            <td colspan="7" class="status-loading">Carregant dades…</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="status-updated" class="status-updated"></p>
+        </section>
+    </div>
+</body>
+</html>

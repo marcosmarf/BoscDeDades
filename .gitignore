@@ -1,3 +1,4 @@
 # Backend del servidor (credenciales, logs, datos en runtime)
 server/config.php
 research/
+server/OLD_PHP
