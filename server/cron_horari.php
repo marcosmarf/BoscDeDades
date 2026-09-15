@@ -1,7 +1,15 @@
 <?php
-require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/config_db.php';
 
-try {    $pdo = new PDO(
+if (php_sapi_name() !== 'cli') {
+    http_response_code(403);
+    exit('Forbidden: aquest script només s\'ha d\'executar per crontab.');
+}
+
+$pdo = null;
+
+try {
+    $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
         DB_USER,
         DB_PASS,
@@ -10,6 +18,12 @@ try {    $pdo = new PDO(
             PDO::ATTR_EMULATE_PREPARES => false,
         ]
     );
+
+    $lock = $pdo->query("SELECT GET_LOCK('boscdedades_cron_horari', 0) AS got_lock")->fetch();
+    if (!$lock || (int)$lock['got_lock'] !== 1) {
+        echo "Ja hi ha una altra execució del cron en curs. Sortint.";
+        exit(0);
+    }
 
     $pdo->beginTransaction();
 
@@ -42,17 +56,27 @@ try {    $pdo = new PDO(
     ";
     $pdo->exec($sql_averages);
 
-    $pdo->exec("DELETE FROM sensor_data WHERE received_at < NOW() - INTERVAL 1 HOUR");
-    $pdo->exec("DELETE FROM send_log WHERE received_at < NOW() - INTERVAL 1 HOUR");
+    $pdo->exec("DELETE FROM sensor_data WHERE received_at < NOW() - INTERVAL 24 HOUR");
+    $pdo->exec("DELETE FROM send_log WHERE received_at < NOW() - INTERVAL 24 HOUR");
 
     $pdo->commit();
-    echo "Completat: Mitges calculades i dades antigues (>1h) eliminades.";
+
+    $pdo->exec("SELECT RELEASE_LOCK('boscdedades_cron_horari')");
+
+    echo "Completat: Mitjanes calculades i dades antigues (>24h) eliminades.";
 
 } catch (PDOException $e) {
-    if ($pdo->inTransaction()) {
+    if ($pdo instanceof PDO && $pdo->inTransaction()) {
         $pdo->rollBack();
     }
+    if ($pdo instanceof PDO) {
+        try {
+            $pdo->exec("SELECT RELEASE_LOCK('boscdedades_cron_horari')");
+        } catch (PDOException $e2) {
+            // ignorem, no és crític
+        }
+    }
     error_log('BoscDeDades Cron Error: ' . $e->getMessage());
-    die("Error en el proces horari: " . $e->getMessage());
+    http_response_code(500);
+    die("Error en el procés horari. Consulteu els logs del servidor.");
 }
-?>
