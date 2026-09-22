@@ -5,15 +5,15 @@ header('Cache-Control: no-cache, must-revalidate');
 require_once __DIR__ . '/config_db.php';
 
 try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER_READ, DB_PASS_READ);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    error_log('BoscDeDades Status Error: ' . $e->getMessage());
+    error_log('BoscDeDades DB error: ' . $e->getMessage());
     http_response_code(500);
     echo json_encode([
-        'status' => 'error',
-        'reason' => 'Error de connexiÃ³ a la base de dades' // Missatge segur
+        'status' => 'error', 
+        'reason' => 'Error intern del servidor'
     ]);
     exit;
 }
@@ -21,7 +21,7 @@ try {
 $query = "
     SELECT 
         esp8266id AS board_id, 
-        http_sensor AS sensor_id, 
+        total_readings,
         last_seen,
         TIMESTAMPDIFF(SECOND, last_seen, NOW()) / 3600.0 AS hours_since
     FROM sensor_status
@@ -36,6 +36,7 @@ try {
     foreach ($boards as &$board) {
         $hours = (float)$board['hours_since'];
         
+        // Determina quin dels 3 estats t¨¦
         if ($hours < 1) {
             $board['status'] = 'activa';
         } elseif ($hours < (24 * 30)) { 
@@ -43,23 +44,21 @@ try {
         } else {
             $board['status'] = 'inactiva';
         }
-
-        $board['mac_id'] = null;
-        $board['sw_version'] = null;
-        $board['total_readings'] = null;
     }
+    unset($board);
     
     echo json_encode([
         'status' => 'ok',
         'generated_at' => date('Y-m-d\TH:i:sP'),
         'boards' => $boards
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 
 } catch (PDOException $e) {
-    error_log('BoscDeDades Status Query Error: ' . $e->getMessage());
+    error_log('BoscDeDades DB error: ' . $e->getMessage());
     http_response_code(500);
     echo json_encode([
-        'status' => 'error',
-        'reason' => 'Error en la consulta SQL' // Missatge segur
+        'status' => 'error', 
+        'reason' => 'Error intern del servidor'
     ]);
+    exit;
 }

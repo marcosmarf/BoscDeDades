@@ -9,6 +9,7 @@ if (php_sapi_name() !== 'cli') {
 $pdo = null;
 
 try {
+    // Conexión a la base de datos
     $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
         DB_USER,
@@ -26,20 +27,6 @@ try {
     }
 
     $pdo->beginTransaction();
-
-    $sql_locations = "
-        INSERT INTO sensor_locations (esp8266id, lat, lon, lastUpdate)
-        SELECT esp8266id, MAX(gps_lat), MAX(gps_lon), NOW() 
-        FROM sensor_data 
-        WHERE gps_lat IS NOT NULL AND gps_lon IS NOT NULL
-        GROUP BY esp8266id
-        ON DUPLICATE KEY UPDATE 
-            lat = VALUES(lat), 
-            lon = VALUES(lon), 
-            lastUpdate = VALUES(lastUpdate)
-    ";
-    $pdo->exec($sql_locations);
-
     $sql_averages = "
         INSERT INTO sensor_data_rolling_avg (fecha_calculo, esp8266id, avg_dht_temperature, avg_dht_humidity, avg_dht_pressure, avg_sds_P1, avg_sds_P2)
         SELECT 
@@ -61,6 +48,7 @@ try {
 
     $pdo->commit();
 
+    // Liberar el bloqueo al terminar
     $pdo->exec("SELECT RELEASE_LOCK('boscdedades_cron_horari')");
 
     echo "Completat: Mitjanes calculades i dades antigues (>24h) eliminades.";
@@ -73,7 +61,6 @@ try {
         try {
             $pdo->exec("SELECT RELEASE_LOCK('boscdedades_cron_horari')");
         } catch (PDOException $e2) {
-            // ignorem, no és crític
         }
     }
     error_log('BoscDeDades Cron Error: ' . $e->getMessage());
