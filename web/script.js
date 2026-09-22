@@ -301,7 +301,9 @@
         const cards = Array.from(track.children);
         if (!cards.length) return;
 
-        const initialIndex = Math.min(5, cards.length - 1);
+        // Default focus: the two upcoming assembly workshops (s8 + s9)
+        const focusPairStart = Math.min(8, cards.length - 1);
+        const initialIndex = focusPairStart;
         let currentIndex = initialIndex;
         let startX = 0;
         let isDragging = false;
@@ -330,13 +332,24 @@
             if (nextBtn) nextBtn.disabled = currentIndex >= cards.length - 1;
         }
 
-        function goTo(index) {
+        function goTo(index, options) {
+            const centerPair = options && options.centerPair;
             currentIndex = Math.max(0, Math.min(index, cards.length - 1));
             const step = getCardWidth();
             const cardWidth = cards[currentIndex] ? cards[currentIndex].offsetWidth : step;
             const wrapperWidth = wrapper.clientWidth || 0;
-            const cardStart = currentIndex * step;
-            const offset = cardStart - ((wrapperWidth - cardWidth) / 2);
+            let offset;
+
+            if (centerPair && currentIndex < cards.length - 1) {
+                const gap = step - cardWidth;
+                const pairWidth = cardWidth * 2 + gap;
+                const pairStart = currentIndex * step;
+                offset = pairStart - ((wrapperWidth - pairWidth) / 2);
+            } else {
+                const cardStart = currentIndex * step;
+                offset = cardStart - ((wrapperWidth - cardWidth) / 2);
+            }
+
             track.style.transform = 'translateX(-' + offset + 'px)';
             updateDots();
             updateArrows();
@@ -369,7 +382,14 @@
             else if (delta > 40) goTo(currentIndex - 1);
         });
 
-        goTo(initialIndex);
+        goTo(initialIndex, { centerPair: true });
+        window.addEventListener('resize', () => {
+            if (currentIndex === focusPairStart) {
+                goTo(focusPairStart, { centerPair: true });
+            } else {
+                goTo(currentIndex);
+            }
+        });
     }
 
     if (document.readyState === 'loading') {
