@@ -54,20 +54,16 @@
         const statusKey = board.status || 'sense_dades';
         const statusLabel = STATUS_LABELS[statusKey] || statusKey;
         const rel = relativeTime(board.hours_since);
+        
+        // Enllaç de Grafana amb la ID de la placa injectada dinàmicament
+        const grafanaUrl = `https://api-rrd.madavi.de:3000/grafana/d/GUaL5aZMz/pm-sensors?orgId=1&from=now-30d&to=now&timezone=browser&var-chipID=esp8266-${escapeHtml(board.board_id)}&var-type=BME280&var-query0=sensors`;
 
         return `
-            <tr data-search="${escapeHtml(
-                [board.board_id, board.sensor_id, board.mac_id]
-                    .filter(Boolean)
-                    .join(' ')
-                    .toLowerCase()
-            )}">
+            <tr data-search="${escapeHtml(board.board_id.toLowerCase())}">
                 <td>${escapeHtml(board.board_id)}</td>
-                <td>${escapeHtml(board.sensor_id) || '—'}</td>
-                <td>${escapeHtml(board.mac_id) || '—'}</td>
-                <td>${escapeHtml(board.sw_version) || '—'}</td>
                 <td>${escapeHtml(board.total_readings)}</td>
                 <td>${formatDate(board.last_seen)}${rel ? ' <span class="status-rel">(' + rel + ')</span>' : ''}</td>
+                <td><a href="${grafanaUrl}" target="_blank" rel="noopener noreferrer" style="color: #007bff; text-decoration: underline;">Veure a Grafana</a></td>
                 <td><span class="status-badge status-badge--${statusKey}">${statusLabel}</span></td>
             </tr>
         `;
@@ -75,7 +71,7 @@
 
     function renderTable(boards) {
         if (!boards.length) {
-            tbody.innerHTML = '<tr><td colspan="7" class="status-empty">No s\'ha trobat cap placa amb aquest criteri.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="5" class="status-empty">No s\'ha trobat cap placa amb aquest criteri.</td></tr>';
             countLabel.textContent = '0 places';
             return;
         }
@@ -89,13 +85,7 @@
             renderTable(allBoards);
             return;
         }
-        const filtered = allBoards.filter((b) => {
-            const haystack = [b.board_id, b.sensor_id, b.mac_id]
-                .filter(Boolean)
-                .join(' ')
-                .toLowerCase();
-            return haystack.includes(q);
-        });
+        const filtered = allBoards.filter((b) => b.board_id.toLowerCase().includes(q));
         renderTable(filtered);
     }
 
