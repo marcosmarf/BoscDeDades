@@ -336,12 +336,18 @@ body {
     align-items: center;
     gap: 0.5rem;
     text-transform: none;
+    
+    color: var(--text-main);
+    text-decoration: none;
 }
 
 nav {
     display: flex;
     gap: 2.5rem;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav a {

@@ -7,6 +7,7 @@
         "nav-plantarSensor": "Plantar un Sensor",
         "nav-sessions": "Sessions",
         "nav-resources": "Recursos",
+        "nav-status": "Estat de la Xarxa",
         "lang-trigger": "Idioma",
 
         "main-subtitle": "// CONSTRUEIX, MESURA i MILLORA",
@@ -187,7 +188,33 @@
         "msg-contact-mailto-opened": "S'ha obert el teu client de correu. Revisa el missatge i envia'l.",
         "msg-contact-copy-success": "Correu copiat",
         "msg-contact-copy-error": "No s'ha pogut copiar. Pots escriure manualment:",
-        "msg-contact-error-required": "Si us plau, omple el nom i el missatge."
+        "msg-contact-error-required": "Si us plau, omple el nom i el missatge.",
+
+        "status-title": "Estat de la Xarxa de Sensors",
+        "status-subtitle": "Llistat de totes les places que han enviat dades alguna vegada, amb el moment de l'última transmissió i el seu estat actual.",
+        "status-legend-activa": "Activa · rebent dades",
+        "status-legend-sense_dades": "Sense dades · < 1 mes sense rebre",
+        "status-legend-inactiva": "Inactiva · > 1 mes sense transmetre",
+        "status-search-placeholder": "Cerca per ID de placa, sensor o MAC…",
+        "status-refresh": "Actualitza",
+        "status-th-board": "ID Placa",
+        "status-th-readings": "Total Lectures",
+        "status-th-lastseen": "Última Transmissió",
+        "status-th-grafana": "Grafana",
+        "status-th-status": "Estat",
+        "status-loading": "Carregant dades…",
+        "status-empty": "No s'ha trobat cap placa amb aquest criteri.",
+        "status-error-connection": "No s'ha pogut connectar amb el servidor. Torna-ho a provar en uns instants.",
+        "status-updated-prefix": "Última actualització:",
+        "status-badge-activa": "Activa",
+        "status-badge-sense_dades": "Sense dades",
+        "status-badge-inactiva": "Inactiva",
+        "status-grafana-link": "Veure a Grafana",
+        "status-rel-min": "fa {n} min",
+        "status-rel-h": "fa {n} h",
+        "status-rel-dies": "fa {n} dies",
+        "status-count-singular": "placa",
+        "status-count-plural": "places"
     },
     "es": {
         "nav-manifest": "Manifiesto",
@@ -197,6 +224,7 @@
         "nav-plantarSensor": "Plantar un Sensor",
         "nav-sessions": "Sesiones",
         "nav-resources": "Recursos",
+        "nav-status": "Estado de la Red",
         "lang-trigger": "Idioma",
         "main-subtitle": "// CONSTRUYE, MIDE y MEJORA",
 
@@ -376,7 +404,33 @@
         "msg-contact-mailto-opened": "Se ha abierto tu cliente de correo. Revisa el mensaje y envíalo.",
         "msg-contact-copy-success": "Correo copiado",
         "msg-contact-copy-error": "No se ha podido copiar. Puedes escribir manualmente:",
-        "msg-contact-error-required": "Por favor, rellena el nombre y el mensaje."
+        "msg-contact-error-required": "Por favor, rellena el nombre y el mensaje.",
+
+        "status-title": "Estado de la Red de Sensores",
+        "status-subtitle": "Listado de todas las placas que han enviado datos alguna vez, con el momento de la última transmisión y su estado actual.",
+        "status-legend-activa": "Activa · recibiendo datos",
+        "status-legend-sense_dades": "Sin datos · < 1 mes sin recibir",
+        "status-legend-inactiva": "Inactiva · > 1 mes sin transmitir",
+        "status-search-placeholder": "Busca por ID de placa, sensor o MAC…",
+        "status-refresh": "Actualizar",
+        "status-th-board": "ID Placa",
+        "status-th-readings": "Total Lecturas",
+        "status-th-lastseen": "Última Transmisión",
+        "status-th-grafana": "Grafana",
+        "status-th-status": "Estado",
+        "status-loading": "Cargando datos…",
+        "status-empty": "No se ha encontrado ninguna placa con ese criterio.",
+        "status-error-connection": "No se ha podido conectar con el servidor. Vuelve a intentarlo en unos instantes.",
+        "status-updated-prefix": "Última actualización:",
+        "status-badge-activa": "Activa",
+        "status-badge-sense_dades": "Sin datos",
+        "status-badge-inactiva": "Inactiva",
+        "status-grafana-link": "Ver en Grafana",
+        "status-rel-min": "hace {n} min",
+        "status-rel-h": "hace {n} h",
+        "status-rel-dies": "hace {n} días",
+        "status-count-singular": "placa",
+        "status-count-plural": "placas"
     },
     "en": {
         "nav-manifest": "Manifesto",
@@ -386,6 +440,7 @@
         "nav-plantarSensor": "Plant a Sensor",
         "nav-sessions": "Sessions",
         "nav-resources": "Resources",
+        "nav-status": "Network Status",
         "lang-trigger": "Language",
         "main-subtitle": "// BUILD, MEASURE and IMPROVE",
 
@@ -565,7 +620,33 @@
         "msg-contact-mailto-opened": "Your email client has opened. Review the message and send it.",
         "msg-contact-copy-success": "Email copied",
         "msg-contact-copy-error": "Could not copy. You can type it manually:",
-        "msg-contact-error-required": "Please fill in your name and message."
+        "msg-contact-error-required": "Please fill in your name and message.",
+
+        "status-title": "Sensor Network Status",
+        "status-subtitle": "List of all boards that have ever sent data, with the time of their last transmission and their current status.",
+        "status-legend-activa": "Active · receiving data",
+        "status-legend-sense_dades": "No data · < 1 month without receiving",
+        "status-legend-inactiva": "Inactive · > 1 month without transmitting",
+        "status-search-placeholder": "Search by board ID, sensor or MAC…",
+        "status-refresh": "Refresh",
+        "status-th-board": "Board ID",
+        "status-th-readings": "Total Readings",
+        "status-th-lastseen": "Last Transmission",
+        "status-th-grafana": "Grafana",
+        "status-th-status": "Status",
+        "status-loading": "Loading data…",
+        "status-empty": "No boards found matching this criteria.",
+        "status-error-connection": "Could not connect to the server. Please try again shortly.",
+        "status-updated-prefix": "Last updated:",
+        "status-badge-activa": "Active",
+        "status-badge-sense_dades": "No data",
+        "status-badge-inactiva": "Inactive",
+        "status-grafana-link": "View in Grafana",
+        "status-rel-min": "{n} min ago",
+        "status-rel-h": "{n} h ago",
+        "status-rel-dies": "{n} days ago",
+        "status-count-singular": "board",
+        "status-count-plural": "boards"
     }
 };
 
@@ -609,6 +690,8 @@ function changeLanguage(lang) {
 
     syncLanguageSelector(lang);
     clearContactFeedback();
+
+    document.dispatchEvent(new CustomEvent('bosc:languagechange', { detail: { lang } }));
 }
 
 function clearContactFeedback() {
