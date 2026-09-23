@@ -195,14 +195,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem;
     position: sticky;
     top: 0;
     background: rgba(8, 8, 8, 0.95);
     z-index: 100;
     border-bottom: 1px solid var(--line-color);
     backdrop-filter: blur(10px);
-    height: 4rem;
+    min-height: 4rem;
 }
 
 /* Ajuste extra para anclas principales con header sticky */
@@ -230,6 +230,7 @@ body {
     margin-left: 1.25rem;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .lang-dropdown {
@@ -336,30 +337,37 @@ body {
     align-items: center;
     gap: 0.5rem;
     text-transform: none;
-    
+    flex-shrink: 0;
     color: var(--text-main);
     text-decoration: none;
 }
 
 nav {
     display: flex;
-    gap: 2.5rem;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: center;
+    min-width: 0;
+    margin: 0 1rem;
 }
 
 nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    white-space: nowrap;
     color: var(--text-main);
     text-decoration: none;
     font-family: var(--font-heading);
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
     position: relative;
-    padding: 0.35rem 0.7rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 999px;
     overflow: hidden;
     z-index: 0;
@@ -1633,4 +1641,3 @@ ul ul li {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-
