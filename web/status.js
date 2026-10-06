@@ -11,10 +11,12 @@
     const countLabel = document.getElementById('status-count');
     const refreshBtn = document.getElementById('status-refresh');
     const updatedLabel = document.getElementById('status-updated');
+    const serverAlert = document.getElementById('status-server-alert');
 
     let allBoards = [];
     let lastGeneratedAt = null;
     let autoRefreshTimer = null;
+    let isOffline = false;
 
     const LOCALE_MAP = { ca: 'ca-ES', es: 'es-ES', en: 'en-GB' };
 
@@ -73,14 +75,43 @@
         return tr('status-rel-dies', 'fa {n} dies').replace('{n}', Math.round(hours / 24));
     }
 
+    function hideServerAlert() {
+        if (serverAlert) {
+            serverAlert.classList.add('hidden');
+            serverAlert.innerHTML = '';
+        }
+    }
+
+    function showServerAlert(message) {
+        if (!serverAlert) return;
+        serverAlert.innerHTML = `
+            <div class="status-alert-content">
+                <span>${escapeHtml(message)}</span>
+            </div>
+        `;
+        serverAlert.classList.remove('hidden');
+    }
+
     function renderRow(board) {
+        const grafanaText = tr('status-grafana-link', 'Veure a Grafana');
+        const grafanaUrl = `https://api-rrd.madavi.de:3000/grafana/d/GUaL5aZMz/pm-sensors?orgId=1&from=now-30d&to=now&timezone=browser&var-chipID=esp8266-${escapeHtml(board.board_id)}&var-type=BME280&var-query0=sensors`;
+
+        // Quan no hi ha connexió amb el servidor, NOMÉS es mostra la ID i l'enllaç de Grafana
+        if (isOffline) {
+            return `
+                <tr data-search="${escapeHtml(board.board_id.toLowerCase())}">
+                    <td>${escapeHtml(board.board_id)}</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><a href="${grafanaUrl}" target="_blank" rel="noopener noreferrer" style="color: #007bff; text-decoration: underline;">${escapeHtml(grafanaText)}</a></td>
+                    <td>—</td>
+                </tr>
+            `;
+        }
+
         const statusKey = board.status || 'sense_dades';
         const label = statusLabel(statusKey);
         const rel = relativeTime(board.hours_since);
-        const grafanaText = tr('status-grafana-link', 'Veure a Grafana');
-
-        // Enllaç de Grafana amb la ID de la placa injectada dinàmicament
-        const grafanaUrl = `https://api-rrd.madavi.de:3000/grafana/d/GUaL5aZMz/pm-sensors?orgId=1&from=now-30d&to=now&timezone=browser&var-chipID=esp8266-${escapeHtml(board.board_id)}&var-type=BME280&var-query0=sensors`;
 
         return `
             <tr data-search="${escapeHtml(board.board_id.toLowerCase())}">
@@ -119,13 +150,11 @@
         renderTable(filtered);
     }
 
-    function showError(message) {
-        tbody.innerHTML = `<tr><td colspan="5" class="status-error">${escapeHtml(message)}</td></tr>`;
-        countLabel.textContent = '';
-    }
-
     function renderUpdatedLabel() {
-        if (!lastGeneratedAt) return;
+        if (!lastGeneratedAt || isOffline) {
+            updatedLabel.textContent = '';
+            return;
+        }
         const gen = new Date(lastGeneratedAt);
         const prefix = tr('status-updated-prefix', 'Última actualització:');
         updatedLabel.textContent = prefix + ' ' + gen.toLocaleString(currentLocale());
@@ -141,16 +170,45 @@
             if (data.status !== 'ok') {
                 throw new Error('No s\'han pogut carregar les dades (' + (data.reason || 'error desconegut') + ')');
             }
+            
             allBoards = data.boards || [];
-            applyFilter();
-
-            if (data.generated_at) {
-                lastGeneratedAt = data.generated_at;
-                renderUpdatedLabel();
+            lastGeneratedAt = data.generated_at || null;
+            
+            // Guardem la llista de plaques per poder mostrar les IDs si cau la connexió
+            localStorage.setItem('bosc_backup_boards', JSON.stringify(allBoards));
+            if (lastGeneratedAt) {
+                localStorage.setItem('bosc_backup_time', lastGeneratedAt);
             }
+
+            isOffline = false;
+            hideServerAlert();
+            applyFilter();
+            renderUpdatedLabel();
+            
         } catch (err) {
             console.error('BoscDeDades status:', err);
-            showError(tr('status-error-connection', 'No s\'ha pogut connectar amb el servidor. Torna-ho a provar en uns instants.'));
+            
+            isOffline = true;
+            
+            showServerAlert(
+                tr('status-alert-error', 'ERROR DE CONNEXIÓ: No es pot establir comunicació amb el servidor. Es mostren les últimes dades disponibles.')
+            );
+
+            const backupBoards = localStorage.getItem('bosc_backup_boards');
+            
+            if (backupBoards) {
+                try {
+                    allBoards = JSON.parse(backupBoards);
+                    applyFilter();
+                    renderUpdatedLabel();
+                } catch (parseErr) {
+                    allBoards = [];
+                    renderTable([]);
+                }
+            } else {
+                allBoards = [];
+                renderTable([]);
+            }
         }
     }
 
@@ -167,9 +225,6 @@
         refreshBtn.addEventListener('click', loadStatus);
     });
 
-    // Re-render dynamic content (table rows, count, updated label) when the
-    // language changes, so text generated in JS stays in sync with the
-    // static strings that translations.js updates via element ids.
     document.addEventListener('bosc:languagechange', () => {
         applyFilter();
         renderUpdatedLabel();

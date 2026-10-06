@@ -20,6 +20,34 @@
     line-height: 1.5;
 }
 
+/* Banner d'alerta d'error de connexió (sense emoticones) */
+.status-alert {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1.75rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 600;
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #ff6b6b;
+    box-shadow: 0 0 12px rgba(231, 76, 60, 0.3);
+}
+
+.status-alert.hidden {
+    display: none;
+}
+
+.status-alert-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 /* Llegenda d'estats */
 .status-legend {
     display: flex;
@@ -139,19 +167,14 @@
 }
 
 .status-loading,
-.status-empty,
-.status-error {
+.status-empty {
     text-align: center;
     padding: 2rem 1rem;
     opacity: 0.75;
     white-space: normal;
 }
 
-.status-error {
-    color: #e74c3c;
-}
-
-/* Badges d'estat dins la taula */
+/* Badges d'estat */
 .status-badge {
     display: inline-flex;
     align-items: center;
