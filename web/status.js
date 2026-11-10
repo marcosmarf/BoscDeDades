@@ -217,9 +217,39 @@
         autoRefreshTimer = setInterval(loadStatus, AUTO_REFRESH_MS);
     }
 
+    function setupLegendTooltips() {
+        const legendMap = {
+            'status-legend-activa': 'activa',
+            'status-legend-sense_dades': 'sense_dades',
+            'status-legend-inactiva': 'inactiva'
+        };
+
+        for (const [id, statusKey] of Object.entries(legendMap)) {
+            const textElement = document.getElementById(id);
+            if (!textElement) continue;
+            
+            const parentElement = textElement.parentElement;
+
+            parentElement.addEventListener('mouseenter', () => {
+                if (isOffline && allBoards.length === 0) {
+                    parentElement.setAttribute('data-tooltip', 'Sense dades');
+                    return;
+                }
+
+                // Comptem quantes plaques tenen aquest estat (si no té estat, per defecte és 'sense_dades')
+                const count = allBoards.filter(b => (b.status || 'sense_dades') === statusKey).length;
+                const noun = count === 1 ? 'placa' : 'plaques';
+                
+                // Injectem el resultat a l'atribut data-tooltip
+                parentElement.setAttribute('data-tooltip', `${count} ${noun}`);
+            });
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         loadStatus();
         scheduleAutoRefresh();
+        setupLegendTooltips();
 
         searchInput.addEventListener('input', applyFilter);
         refreshBtn.addEventListener('click', loadStatus);
